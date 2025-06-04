@@ -4,53 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Site de Vendas de Imóveis</title>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+
+    <!-- Estilos externos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="imob.css">
+
+    <!-- Estilo interno -->
     <style>
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f9f9f9;
             color: #333;
         }
 
         header {
-            background-color: #333;
-            color: #fff;
+            background-color: #004466;
             padding: 20px;
             text-align: center;
+            color: #fff;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        nav {
+            background-color: #005577;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            background-color: #007799;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 25px;
+            transition: background-color 0.3s, transform 0.2s;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            background-color: #00aabb;
+            transform: scale(1.05);
         }
 
         .container {
-            max-width: 800px;
-            margin: 20px auto; 
+            max-width: 1000px;
+            margin: 30px auto;
             padding: 20px;
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
 
-        nav ul {
-            list-style-type: none;
-            padding: 0;
+        .carousel-container {
+            margin: 20px auto;
+            width: 90%;
         }
 
-        nav ul li {
-            display: inline;
-            margin-right: 20px;
+        .carousel img {
+            width: 100%;
+            border-radius: 10px;
         }
 
-        nav ul li a {
+        .link-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .button-link {
+            background-color: #004466;
             color: #fff;
             text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: background-color 0.3s ease;
         }
 
-        main {
-            padding: 20px;
-            text-align: center;
+        .button-link:hover {
+            background-color: #006688;
         }
 
         footer {
@@ -58,6 +106,21 @@
             color: #fff;
             padding: 20px;
             text-align: center;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        footer ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
         }
 
         .whatsapp-link {
@@ -68,77 +131,49 @@
             right: 40px;
             background-color: #25d366;
             color: #fff;
-            border-radius: 50px;
+            border-radius: 50%;
             text-align: center;
             font-size: 30px;
             box-shadow: 1px 1px 2px #888;
             z-index: 1000;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             text-decoration: none;
         }
 
-        .fab.fa-whatsapp {
-            margin-top: 5px;
-        }
-
-        .carousel-container {
-            margin-top: 20px;
-            margin-bottom: 20px;
-            width: 80%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .carousel img {
-            width: 100%;
-        }
-
-        .button-link {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #000;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .button-link:hover {
-            background-color: #333;
-        }
-
-        .link-container {
-            margin-top: 30px;
-        }
-
         .centered-text {
             margin-top: 30px;
             font-style: italic;
+            font-size: 16px;
         }
     </style>
 </head>
+
 <body>
+    <!-- Botão WhatsApp flutuante -->
     <a class="whatsapp-link" href="https://web.whatsapp.com/send?phone=5521965202500" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
+    <!-- Cabeçalho -->
     <header>
         <h1>Site de Vendas de Imóveis</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="button-link">Home</a></li>
-                <li><a href="imoveis2.html" class="button-link">Imóveis Lançamentos</a></li>
-                <li><a href="imoveis.html" class="button-link">Imóveis Avulsos</a></li>
-                <li><a href="contato.html" class="button-link">Contato</a></li>
-                <li><a href="sobrenos.html" class="button-link">Sobre Nós</a></li>
-            </ul>
-        </nav>
     </header>
 
-    <main>
+    <!-- Menu de navegação -->
+    <nav>
+        <ul>
+            <li><a href="index.html">🏠 Home</a></li>
+            <li><a href="imoveis2.html">🏗️ Lançamentos</a></li>
+            <li><a href="imoveis.html">🏘️ Avulsos</a></li>
+            <li><a href="contato.html">📞 Contato</a></li>
+            <li><a href="sobrenos.html">ℹ️ Sobre Nós</a></li>
+        </ul>
+    </nav>
+
+    <!-- Conteúdo principal -->
+    <main class="container">
         <div class="carousel-container">
             <div class="carousel">
                 <div><img src="https://img.freepik.com/fotos-gratis/modelo-de-casa-de-ferias-chave-e-desenho-em-area-de-trabalho-retro-conceito-de-venda-de-imoveis_1387-310.jpg" alt="Imagem 1"></div>
@@ -147,30 +182,34 @@
             </div>
         </div>
 
+        <!-- Navegação interna -->
         <div class="link-container">
-            <a href="sobrenos.html" class="button-link">Página Anterior</a>
-            <a href="imoveis2.html" class="button-link">Próxima Página</a>
+            <a href="sobrenos.html" class="button-link">⬅ Página Anterior</a>
+            <a href="imoveis2.html" class="button-link">Próxima Página ➡</a>
         </div>
 
-        <p class="centered-text">Tudo Posso Naquele Que Me Fortalece. Filipenses 4:11–13</p>
+        <p class="centered-text">"Tudo posso naquele que me fortalece." - Filipenses 4:13</p>
     </main>
 
+    <!-- Rodapé -->
     <footer>
-        <nav>
-            <ul>
-                <li><a href="https://www.facebook.com/imoveisemercadoimobiliario?mibextid=ZbWKwL" class="button-link">Facebook</a></li>
-                <li><a href="https://www.instagram.com/juliobarbosabroker?igsh=MWFjdml1NG04d3ZubQ==" class="button-link">Instagram</a></li>
-            </ul>
-        </nav>
+        <p>Siga-nos nas redes sociais:</p>
+        <ul>
+            <li><a href="https://www.facebook.com/imoveisemercadoimobiliario?mibextid=ZbWKwL">Facebook</a></li>
+            <li><a href="https://www.instagram.com/juliobarbosabroker?igsh=MWFjdml1NG04d3ZubQ==">Instagram</a></li>
+        </ul>
     </footer>
 
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script>
         $(document).ready(function(){
             $('.carousel').slick({
                 autoplay: true,
-                autoplaySpeed: 2000
+                autoplaySpeed: 3000,
+                dots: true,
+                arrows: false
             });
         });
     </script>
