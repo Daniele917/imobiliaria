@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Imóveis Disponíveis</title>
-    <style>
+    
+<style>
+        /* Estilos para layout aprimorado */
         body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
@@ -19,49 +21,72 @@
         .property {
             background-color: #fff;
             border-radius: 5px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             margin: 20px auto;
             max-width: 600px;
             padding: 20px;
         }
         .property h2 {
-            color: #007bff;
-            font-size: 24px;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #007bff;
-            padding-bottom: 5px;
-        }
-        .image-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-        .image-grid img {
-            width: 100%;
-            height: auto;
-            border-radius: 4px;
-            object-fit: cover;
-        }
-        p, ul {
-            color: #555;
-            font-size: 16px;
-            line-height: 1.5;
-        }
-        ul {
-            margin-top: 0;
-            margin-bottom: 15px;
-            padding-left: 20px;
-        }
-        strong {
             color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #007bff; /* Adicionando uma borda inferior */
+            padding-bottom: 5px; /* Adicionando um espaçamento abaixo do título */
         }
-        .contact {
-            margin-top: 15px;
-            font-weight: bold;
+        .property img {
+            display: block;
+            margin: 0 auto 10px;
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .property p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 5px;
+            line-height: 1.5; /* Aumentando o espaçamento entre linhas */
+        }
+        .property a {
             color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
         }
-    </style>
+        .property a:hover {
+            text-decoration: underline;
+        }
+        /* Estilo para centralizar o texto */
+        .centered-text {
+            text-align: center;
+            margin-top: 20px; /* Adicionando margem acima do texto centralizado */
+            color: #555; /* Alterando a cor do texto */
+        }
+        /* Estilo para os links */
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        /* Estilo para os links na seção de navegação */
+        .navigation-links {
+            text-align: center;
+            margin-top: 30px; /* Adicionando margem acima dos links */
+        }
+        .navigation-links a {
+            margin: 0 10px; /* Adicionando espaçamento entre os links */
+            padding: 10px 20px; /* Adicionando padding para criar botões */
+            background-color: #000; /* Cor de fundo preta */
+            color: #fff; /* Cor do texto branca */
+            border-radius: 5px; /* Bordas arredondadas */
+            text-decoration: none; /* Removendo sublinhado */
+        }
+        .navigation-links a:hover {
+            background-color: #333; /* Mudando a cor de fundo ao passar o mouse */
+        }
+    </style> 
+
+    
 </head>
 <body>
 
