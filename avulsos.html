@@ -1,13 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Imóveis Disponíveis</title>
-    
-<style>
-        /* Estilos para layout aprimorado */
+    <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
@@ -31,16 +28,14 @@
             color: #333;
             font-size: 24px;
             margin-bottom: 10px;
-            border-bottom: 2px solid #007bff; /* Adicionando uma borda inferior */
-            padding-bottom: 5px; /* Adicionando um espaçamento abaixo do título */
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
         }
-           .image-grid {
-             display: grid;
-             grid-template-columns: repeat(2, 1fr);
-             gap: 10px;
-              margin-bottom: 15px;
-           
-            
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
         }
         .property img {
             display: block;
@@ -50,72 +45,90 @@
             border-radius: 5px;
         }
         .property p {
-            color: #666;
+            color: #555;
             font-size: 16px;
             margin-bottom: 5px;
-            line-height: 1.5; /* Aumentando o espaçamento entre linhas */
+            line-height: 1.5;
         }
-        .property a {
-            color: #007bff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .property a:hover {
-            text-decoration: underline;
-        }
-        /* Estilo para centralizar o texto */
-        .centered-text {
-            text-align: center;
-            margin-top: 20px; /* Adicionando margem acima do texto centralizado */
-            color: #555; /* Alterando a cor do texto */
-        }
-        /* Estilo para os links */
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        /* Estilo para os links na seção de navegação */
         .navigation-links {
             text-align: center;
-            margin-top: 30px; /* Adicionando margem acima dos links */
+            margin: 30px 0;
         }
         .navigation-links a {
-            margin: 0 10px; /* Adicionando espaçamento entre os links */
-            padding: 10px 20px; /* Adicionando padding para criar botões */
-            background-color: #000; /* Cor de fundo preta */
-            color: #fff; /* Cor do texto branca */
-            border-radius: 5px; /* Bordas arredondadas */
-            text-decoration: none; /* Removendo sublinhado */
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: #000;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
         }
         .navigation-links a:hover {
-            background-color: #333; /* Mudando a cor de fundo ao passar o mouse */
+            background-color: #333;
         }
-    </style> 
-
-    
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            text-decoration: none;
+            z-index: 1000;
+        }
+        .contact-section {
+            background-color: #fff;
+            padding: 30px;
+            max-width: 600px;
+            margin: 40px auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .contact-section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .contact-section input, .contact-section textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .contact-section button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .contact-section button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
-<body>
+<body id="topo">
 
-    
-    <!-- ... (cabeçalho, estilos e <body> já estão corretos) -->
+<h1>Imóveis Disponíveis</h1>
 
-<h1>Avulsos</h1>
-
+<!-- IMÓVEIS 1 A 6 -->
 <div class="property">
     <h2>Imóvel 1</h2>
-
     <div class="image-grid">
         <img src="images/imagens/imovel1/foto1.png" alt="Imóvel 1 - Foto 1">
         <img src="images/imagens/imovel1/foto2.png" alt="Imóvel 1 - Foto 2">
         <img src="images/imagens/imovel1/foto3.png" alt="Imóvel 1 - Foto 3">
         <img src="images/imagens/imovel1/foto4.png" alt="Imóvel 1 - Foto 4">
     </div>
-
     <p><strong>Valor:</strong> R$ 300.000,00</p>
-    <p>Terreno com 360m² (12x30), localizado próximo à estação Jardim Primavera.</p>
+    <p>Terreno com 360m² (12x30), próximo à estação Jardim Primavera.</p>
     <p><strong>Duas casas independentes:</strong></p>
     <ul>
         <li><strong>Casa 1:</strong> 3 quartos, sala ampla, cozinha, banheiro, varanda</li>
@@ -123,32 +136,20 @@
     </ul>
     <p>Quintal amplo nos fundos com poço artesiano. Ideal para lazer, horta ou novas construções.</p>
     <p>Ótima opção para morar, investir ou gerar renda com aluguel.</p>
-    <p><strong> 📅 Agende sua visita! Aceita oferta.</strong></p>
-    <p><strong> 📲 Mais informações e fotos pelo WhatsApp</strong></p>
 </div>
 
 <div class="property">
     <h2>Imóvel 2</h2>
-
     <div class="image-grid">
         <img src="images/imagens/imovel2/foto1.png" alt="Imóvel 2 - Foto 1">
-        <img src="images/imagens/imovel2/foto4.png" alt="Imóvel 2 - Foto 2">
+        <img src="images/imagens/imovel2/foto2.png" alt="Imóvel 2 - Foto 2">
         <img src="images/imagens/imovel2/foto3.png" alt="Imóvel 2 - Foto 3">
-        <img src="images/imagens/imovel2/foto2.png" alt="Imóvel 2 - Foto 4">
+        <img src="images/imagens/imovel2/foto4.png" alt="Imóvel 2 - Foto 4">
     </div>
-
-    <p><strong>Localização estratégica em Duque de Caxias, oportunidade para morar ou investir - 25 de A...</strong></p>
-    <p><strong>R$ 370.000,00</strong></p>
-
-    <p>Localização é tudo e esse imóvel tem um diferencial que faz brilhar os olhos: fica exatamente em frente à Faculdade Unigranrio, na Rua Assunção, nº 186, Duque de Caxias. Um ponto privilegiado, perfeito para estudantes, professores ou investidores em busca de renda com aluguel.</p>
-
-    <p>O imóvel está localizado em uma vila tranquila e organizada, longe de algazarra. Ele é composto por duas kitnets independentes e uma casa com dois quartos, sendo um deles suíte. Tudo com piso de cerâmica, simples, porém funcional.</p>
-
-    <p>Uma excelente oportunidade para quem deseja investir em locação estudantil ou garantir uma moradia em uma das melhores localizações da cidade.</p>
-
-    <p><strong>📲 Mais informações e fotos pelo WhatsApp</strong></p>
-    <p><strong>📅 Agende sua visita e descubra o lar dos seus sonhos!</strong></p>
+    <p><strong>Valor:</strong> R$ 370.000,00</p>
+    <p>Localização privilegiada em frente à Unigranrio. Composto por 2 kitnets + 1 casa com suíte. Ideal para estudantes ou investidores.</p>
 </div>
+
 <div class="property">
     <h2>Imóvel 3</h2>
     <div class="image-grid">
@@ -156,29 +157,9 @@
         <img src="images/imagens/imovel3/foto2.png" alt="Imóvel 3 - Foto 2">
         <img src="images/imagens/imovel3/foto3.png" alt="Imóvel 3 - Foto 3">
         <img src="images/imagens/imovel3/foto4.png" alt="Imóvel 3 - Foto 4">
-        <img src="images/imagens/imovel3/foto5.png" alt="Imóvel 3 - Foto 5">
-        <img src="images/imagens/imovel3/foto6.png" alt="Imóvel 3 - Foto 6">
     </div>
-
-    <p><strong>🏡 Seu novo lar no bairro Carolina – conforto, beleza e aconchego em um duplex encantador!</strong></p>
-    <p><strong>Valor:</strong> R$ 380.000,00</p>
-    <p><strong>Endereço:</strong> Rua Graciliano Ramos, nº 129 – Casa 1, Bairro Carolina, Duque de Caxias</p>
-
-    <p><strong>Destaques do imóvel:</strong></p>
-    <ul>
-        <li>Fachada totalmente revestida</li>
-        <li>Sala espaçosa integrada à cozinha americana com <strong>móveis planejados</strong></li>
-        <li>Banheiro social no primeiro andar</li>
-        <li>Garagem coberta</li>
-        <li>2 quartos confortáveis (1 com <strong>varanda exclusiva</strong>)</li>
-        <li>Banheiro social no segundo pavimento com acabamento moderno</li>
-        <li><strong>Terraço coberto</strong> com área de lazer e área de serviço</li>
-        <li>Móveis planejados também sob a escada</li>
-    </ul>
-
-    <p><strong>Ideal para quem busca qualidade de vida, tranquilidade e bom gosto em um dos bairros mais desejados de Duque de Caxias.</strong></p>
-    <p><strong>📲 Mais informações e fotos pelo WhatsApp</strong></p>
-    <p><strong>📅 Agende sua visita!</strong></p>
+    <p><strong>Valor:</strong> R$ 250.000,00</p>
+    <p>Casa com 2 quartos, quintal, garagem. Bairro tranquilo e com infraestrutura completa.</p>
 </div>
 
 <div class="property">
@@ -188,32 +169,11 @@
         <img src="images/imagens/imovel4/foto2.png" alt="Imóvel 4 - Foto 2">
         <img src="images/imagens/imovel4/foto3.png" alt="Imóvel 4 - Foto 3">
         <img src="images/imagens/imovel4/foto4.png" alt="Imóvel 4 - Foto 4">
-        <img src="images/imagens/imovel4/foto5.png" alt="Imóvel 4 - Foto 5">
-        <img src="images/imagens/imovel4/foto6.png" alt="Imóvel 4 - Foto 6">
     </div>
-
-    <p><strong>Jardim Vinte e Cinco de Agosto - Rua General Câmara</strong></p>
-    <p><strong>Valor:</strong> R$ 650.000,00</p>
-
-    <p><strong>Refúgio com alma no coração de Duque de Caxias!</strong></p>
-    <p>Imóvel único em terreno amplo, com <strong>duas residências</strong> e ótima estrutura para <strong>morar ou empreender</strong>.</p>
-
-    <p><strong>Casa principal:</strong> 2 quartos, sala, cozinha, banheiro e varanda charmosa, em madeira com alvenaria.</p>
-    <p><strong>Kitnet independente:</strong> sala, quarto e banheiro – ideal para renda ou visitas.</p>
-
-    <p><strong>Área externa:</strong></p>
-    <ul>
-        <li>Cozinha industrial ampla</li>
-        <li>Banheiro externo</li>
-        <li>Piscina</li>
-        <li>Linda árvore de amora</li>
-    </ul>
-
-    <p>Localização privilegiada na <strong>Rua General Câmara</strong>, com <strong>grande potencial construtivo</strong> para uso residencial ou comercial.</p>
-
-    <p><strong>📲 Mais informações e fotos pelo WhatsApp</strong></p>
-    <p><strong>📅 Agende sua visita e conheça esse espaço cheio de vida e possibilidades!</strong></p>
+    <p><strong>Valor:</strong> R$ 280.000,00</p>
+    <p>Apartamento com 3 quartos, suíte, vaga de garagem e varanda gourmet. Próximo ao centro.</p>
 </div>
+
 <div class="property">
     <h2>Imóvel 5</h2>
     <div class="image-grid">
@@ -221,21 +181,9 @@
         <img src="images/imagens/imovel5/foto2.png" alt="Imóvel 5 - Foto 2">
         <img src="images/imagens/imovel5/foto3.png" alt="Imóvel 5 - Foto 3">
         <img src="images/imagens/imovel5/foto4.png" alt="Imóvel 5 - Foto 4">
-        <img src="images/imagens/imovel5/foto5.png" alt="Imóvel 5 - Foto 5">
-        <img src="images/imagens/imovel5/foto6.png" alt="Imóvel 5 - Foto 6">
     </div>
-
-    <p><strong>Venda:</strong> R$ 500.000</p>
-    <p><strong>Condomínio:</strong> Não informado</p>
-    <p><strong>IPTU:</strong> R$ 1.300</p>
-    <p><strong>Área:</strong> 360 m²</p>
-    <p><strong>Quartos:</strong> 3 quartos</p>
-    <p><strong>Banheiros:</strong> 2 banheiros</p>
-    <p><strong>Vagas:</strong> 4 vagas</p>
-    <p><strong>Endereço:</strong> Rua Assunção, 447 - Jardim Vinte e Cinco de Agosto, Duque de Caxias - RJ</p>
-
-    <p><strong>📲 Mais informações e fotos pelo WhatsApp</strong></p>
-    <p><strong>📅 Agende sua visita e descubra o lar dos seus sonhos!</strong></p>
+    <p><strong>Valor:</strong> R$ 450.000,00</p>
+    <p>Sobrado com 4 quartos, escritório, garagem para 3 carros, área gourmet e churrasqueira.</p>
 </div>
 
 <div class="property">
@@ -245,152 +193,32 @@
         <img src="images/imagens/imovel6/foto2.png" alt="Imóvel 6 - Foto 2">
         <img src="images/imagens/imovel6/foto3.png" alt="Imóvel 6 - Foto 3">
         <img src="images/imagens/imovel6/foto4.png" alt="Imóvel 6 - Foto 4">
-        <img src="images/imagens/imovel6/foto5.png" alt="Imóvel 6 - Foto 5">
-        <img src="images/imagens/imovel6/foto6.png" alt="Imóvel 6 - Foto 6">
     </div>
+    <p><strong>Valor:</strong> R$ 320.000,00</p>
+    <p>Casa térrea com 3 quartos, cozinha planejada, lavanderia coberta, próximo a escolas e comércio.</p>
+</div>
 
-    <p><strong>Casa espetacular à venda em Vila São Luís - Duque de Caxias/RJ</strong></p>
+<!-- Navegação -->
+<div class="navigation-links">
+    <a href="#topo">Voltar ao Topo</a>
+    <a href="#contato">Contato</a>
+</div>
 
-    <p><strong>Preço:</strong> R$ 765.000,00</p>
+<!-- Formulário de Contato -->
+<div class="contact-section" id="contato">
+    <h2>Entre em Contato</h2>
+    <form>
+        <input type="text" name="nome" placeholder="Seu nome" required />
+        <input type="email" name="email" placeholder="Seu e-mail" required />
+        <textarea name="mensagem" rows="5" placeholder="Sua mensagem" required></textarea>
+        <button type="submit">Enviar</button>
+    </form>
+</div>
 
-    <p><strong>Destaques do imóvel:</strong></p>
-    <ul>
-        <li>Fachada imponente com cerâmica, granito, telhado colonial e janelões de vidro</li>
-        <li>Garagem coberta para 2 carros, motos e mini jardim com espelho d'água</li>
-        <li>Sala ampla com gesso rebaixado, LED, espelho do chão ao teto e parede 3D</li>
-        <li>Cozinha dos sonhos: porcelanato, coifa, cooktop, bancada e lixeira embutida</li>
-        <li>Banheiro social com pia externa e box de vidro adesivado</li>
-        <li>4 quartos luxuosos (inclui suíte com banheira de hidromassagem e janelão)</li>
-        <li>Todos os quartos com acabamento premium, ar-condicionado e iluminação LED</li>
-        <li>Terraço gourmet coberto para até 120 pessoas, com forno de pizza, churrasqueira e banheiro social</li>
-        <li>Placas de energia solar (economia de até 80%)</li>
-        <li>Sistema de câmeras de segurança</li>
-    </ul>
+<!-- Botão WhatsApp -->
+<a class="whatsapp-button" href="https://wa.me/5521999999999" target="_blank" title="Fale conosco no WhatsApp">
+    💬
+</a>
 
-    <p><strong>Observação:</strong> Imóvel completo, pronto para morar. Ideal para quem busca espaço, beleza e sofisticação.</p>
-
-    <p><strong>📲 Mais informações e fotos pelo WhatsApp</strong></p>
-    <p><strong>📅 Agende sua visita, essa casa é apaixonante.</strong></p>
- </div>
-    <div class="property">
-    <h2>Imóvel 7</h2>
-
-    <div class="image-grid">
-        <img src="images/imagens/imovel7/foto1.png" alt="Imóvel 7 - Foto 1">
-        <img src="images/imagens/imovel7/foto2.png" alt="Imóvel 7 - Foto 2">
-        <img src="images/imagens/imovel7/foto3.png" alt="Imóvel 7 - Foto 3">
-        <img src="images/imagens/imovel7/foto4.png" alt="Imóvel 7 - Foto 4">
-        <img src="images/imagens/imovel7/foto5.png" alt="Imóvel 7 - Foto 5">
-        <img src="images/imagens/imovel7/foto6.png" alt="Imóvel 7 - Foto 6">
-    </div>
-
-    <p><strong>A tranquilidade que você procura com a comodidade que você precisa.</strong></p>
-
-    <p><strong>Preço:</strong> R$ 530.000,00</p>
-
-    <p><strong>Descrição do imóvel:</strong></p>
-    <ul>
-        <li>Apartamento no Condomínio Amazonas – Duque de Caxias/RJ</li>
-        <li>Localizado no 4º andar, com sol da manhã, bem iluminado e arejado</li>
-        <li>2 quartos (sendo 1 suíte com ar-condicionado e armários planejados)</li>
-        <li>Sala ampla com cerâmica tipo tijolinho, teto rebaixado em gesso e piso em porcelanato</li>
-        <li>Varanda charmosa, ideal para momentos relaxantes</li>
-        <li>Cozinha espaçosa e ventilada, com área de serviço integrada</li>
-        <li>Banheiro social confortável e funcional</li>
-        <li>1 vaga de garagem</li>
-    </ul>
-
-    <p><strong>Lazer e comodidades do condomínio:</strong></p>
-    <ul>
-        <li>Playground</li>
-        <li>Salão de festas com churrasqueira</li>
-        <li>Portaria 24h</li>
-        <li>Prédio com elevador</li>
-    </ul>
-
-    <p><strong>Localização:</strong></p>
-    <ul>
-        <li>Área tranquila e estratégica, próxima ao centro de Duque de Caxias</li>
-        <li>Fácil acesso a comércios, escolas e transporte</li>
-    </ul>
-
-    <p><strong>📲 Mais informações e fotos pelo WhatsApp</strong></p>
-    <p><strong>📅 Agende sua visita, venha conhecer seu novo lar e sentir de perto tudo o que esse apartamento tem a oferecer.</strong></p>
- </div>
-    <div class="property">
-    <h2>Imóvel 8</h2>
-
-    <div class="image-grid">
-        <img src="images/imagens/imovel8/foto1.png" alt="Imóvel 8 - Foto 1">
-        <img src="images/imagens/imovel8/foto2.png" alt="Imóvel 8 - Foto 2">
-        <img src="images/imagens/imovel8/foto3.png" alt="Imóvel 8 - Foto 3">
-        <img src="images/imagens/imovel8/foto4.png" alt="Imóvel 8 - Foto 4">
-        <img src="images/imagens/imovel8/foto5.png" alt="Imóvel 8 - Foto 5">
-        <img src="images/imagens/imovel8/foto6.png" alt="Imóvel 8 - Foto 6">
-    </div>
-
-    <p><strong>Três casas à venda na Rua das Acácias – Jardim Primavera</strong></p>
-
-    <p><strong>Preço total:</strong> R$ 720.000,00</p>
-
-    <p><strong>Destaques do imóvel:</strong></p>
-    <ul>
-        <li>Três casas independentes no mesmo terreno – ideal para morar e investir</li>
-    </ul>
-
-    <p><strong>Casa 1 – Térrea e Funcional:</strong></p>
-    <ul>
-        <li>2 quartos, sala arejada, cozinha prática, banheiro social e varanda</li>
-        <li>Ideal para quem busca conforto e praticidade</li>
-        <li>Valor individual: R$ 250.000,00</li>
-    </ul>
-
-    <p><strong>Casa 2 – Aconchego e Simplicidade:</strong></p>
-    <ul>
-        <li>1 quarto, sala, cozinha, banheiro e varanda</li>
-        <li>Ideal para casal, idosos ou para aluguel</li>
-        <li>Valor individual: R$ 170.000,00</li>
-    </ul>
-
-    <p><strong>Casa 3 – Sofisticação no Segundo Andar:</strong></p>
-    <ul>
-        <li>Suíte master com banheiro espaçoso, banheira de hidromassagem e espaço para closet</li>
-        <li>Valor individual: R$ 300.000,00</li>
-    </ul>
-
-    <p><strong>Extras do imóvel:</strong></p>
-    <ul>
-        <li>Construção nos fundos já iniciada (com alicerces e parte da alvenaria)</li>
-        <li>Terraço com churrasqueira e área gourmet com vista panorâmica (capacidade para 100 pessoas)</li>
-        <li>Vista para a Rodovia Washington Luiz e Serra de Petrópolis</li>
-        <li>Potencial para garagem ou outras ampliações</li>
-    </ul>
-
-    <p><strong>Localização:</strong></p>
-    <ul>
-        <li>Rua tranquila, valorizada e com fácil acesso</li>
-    </ul>
-
-    <p><strong>Observação:</strong></p>
-    <ul>
-        <li>Pode ser vendido o conjunto completo ou as casas separadamente</li>
-        <li>Ideal para famílias grandes, investidores ou quem deseja morar e gerar renda</li>
-    </ul>
-
-    <p><strong>📲 Mais informações e fotos pelo WhatsApp</strong></p>
-    <p><strong>📅 Agende sua visita! Não perca essa oportunidade de adquirir um imóvel versátil e completo.</strong></p>
- </div>
-   
-     
-    <!-- Seção de navegação -->
-        <div class="navigation-links">
-            <a class="button" href="lançamentos.html">Voltar</a>
-            <a class="button" href="contato.html">Avançar</a>
-        </div>
-
-    <!-- Texto centralizado -->
-    <p class="centered-text">Para mais informações , entre em contato com o Corretor.</p>
-    <p class="centered-text">Tudo Posso Naquele Que Me Fortalece.Filipenses 4:11–13</p>
 </body>
-</html> 
-                                                                       
+</html>
