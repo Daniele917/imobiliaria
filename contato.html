@@ -2,120 +2,107 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Contato - Julio Barbosa</title>
-    <link rel="stylesheet" href="imob.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato</title>
     <style>
+        /* Estilos para layout aprimorado */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
+            background-color: #f9f9f9;
             margin: 0;
             padding: 0;
-            color: #333;
         }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 14px;
-            text-align: center;
-        }
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 10px 0 0;
-        }
-        nav ul li {
-            display: inline;
-            margin-right: 20px;
-        }
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-        }
-        main {
-            max-width: 600px;
-            margin: 30px auto 60px;
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         h1 {
             text-align: center;
-            margin-bottom: 25px;
-        }
-        form input[type="text"],
-        form input[type="email"],
-        form textarea {
-            width: 100%;
-            padding: 12px;
+            color:#000000 ;
             margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-            resize: vertical;
         }
-        form button {
-            background-color: #007bff;
-            border: none;
-            color: white;
-            padding: 15px 25px;
-            font-size: 18px;
+        .contact-info {
+            margin-top: 20px;
+        }
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+        /* Estilo para o logotipo */
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo img {
+             max-width: 50%; /* Para garantir que o logotipo não ultrapasse a largura do contêiner */
+        }
+        /* Estilo para os links */
+        a.button {
+            color: #fff;
+            text-decoration: none;
+            background-color: #000;
+            padding: 10px 20px;
             border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
+            display: inline-block;
             transition: background-color 0.3s ease;
         }
-        form button:hover {
-            background-color: #0056b3;
-        }
-        footer {
+        a.button:hover {
             background-color: #333;
-            color: #fff;
-            padding: 20px;
+        }
+        /* Estilo para o texto centralizado */
+        .centered-text {
             text-align: center;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            color: #555;
+            margin-top: 20px;
+        }
+        /* Estilo para centralizar os links */
+        .navigation-links {
+            text-align: center; /* Centraliza os links horizontalmente */
+            margin-top: 20px;
+        }
+        .navigation-links a {
+            margin-right: 10px; /* Adiciona um espaço entre os links */
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <div class="logo">
+            <!-- Incluindo o logotipo -->
+            <img src="imagens/imagens/logo/logo1.png " alt="Logotipo da sua empresa">
+        </div>
+        <h1>Contato do Corretor</h1>
+        <div class="contact-info">
+            <p><strong>Nome:</strong> Julio Barbosa</p>
+            <p><strong>Email:</strong> julbarbosaimoveis@gmail.com</p>
+            <p><strong>Telefone:</strong> (21) 96520-2500</p>
+            <p><strong>WhatsApp:</strong> &nbsp;<a class="button" href="https://wa.me/5521965202500">Clique aqui para enviar uma mensagem</a></p>
+            <hr>
+        </div>
+       
+        <!-- Seção de navegação -->
+        <div class="navigation-links">
+            <a class="button" href="index.html">Voltar</a>
+            <a class="button" href="sobrenos.html">Avançar</a>
+        </div>
 
-<header>
-    <h1>Contato - Julio Barbosa</h1>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="avulsos.html">Avulsos</a></li>
-            <li><a href="sobrenos.html">Sobre Nós</a></li>
-            <li><a href="contato.html">Contato</a></li>
-        </ul>
-    </nav>
-</header>
-
-<main>
-    <form action="https://formsubmit.co/julbarbosaimoveis@gmail.com" method="POST">
-        <input type="text" name="nome" placeholder="Seu nome" required />
-        <input type="email" name="email" placeholder="Seu e-mail" required />
-        <textarea name="mensagem" rows="5" placeholder="Sua mensagem" required></textarea>
-
-        <!-- Desativa CAPTCHA do Formsubmit -->
-        <input type="hidden" name="_captcha" value="false" />
-
-        <!-- Redireciona para página obrigado.html -->
-        <input type="hidden" name="_next" value="https://jchb1980.github.io/obrigado.html" />
-
-        <button type="submit">Enviar</button>
-    </form>
-</main>
-
-<footer>
-    &copy; 2025 Julio Barbosa - CRECI-RJ 102.807
-</footer>
-
+        <!-- Texto centralizado -->
+        <p class="centered-text">Tudo Posso Naquele Que Me Fortalece.Filipenses 4:11–13</p>
+    </div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
 
  
