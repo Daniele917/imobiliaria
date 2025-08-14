@@ -1,418 +1,105 @@
-            
-
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Carrossel de Imóveis</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background: #f4f4f4;
-        margin: 0;
-        padding: 20px;
-    }
-    .carousel {
-        position: relative;
-        max-width: 600px;
-        margin: auto;
-        overflow: hidden;
-        background: white;
-        border-radius: 10px;
-        box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    }
-    .carousel-track {
-        display: flex;
-        transition: transform 0.5s ease-in-out;
-    }
-    .slide {
-        min-width: 100%;
-        box-sizing: border-box;
-        padding: 15px;
-    }
-    .slide img {
-        max-width: 100%;
-        margin-bottom: 10px;
-        border-radius: 8px;
-    }
-    .buttons {
-        position: absolute;
-        top: 50%;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        transform: translateY(-50%);
-    }
-    .buttons button {
-        background: rgba(0,0,0,0.5);
-        color: white;
-        border: none;
-        padding: 10px;
-        cursor: pointer;
-        font-size: 20px;
-        border-radius: 50%;
-        transition: background 0.3s;
-    }
-    .buttons button:hover {
-        background: rgba(0,0,0,0.8);
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imóveis Disponíveis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 10px;
+            background: #f5f5f5;
+        }
+        .imovel {
+            background: white;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .titulo {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .valor {
+            color: green;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        .endereco {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .descricao {
+            white-space: pre-line;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .imagens {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .linha {
+            display: flex;
+            gap: 5px;
+        }
+        .linha img {
+            width: 48%;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+    </style>
 </head>
 <body>
 
-<div class="carousel">
-    <div class="carousel-track" id="carouselTrack">
-        <!-- Todos os imóveis serão gerados aqui -->
-        <script>
-            const imoveis = [
-                {
-                    numero: 1,
-                    valor: "R$ 300.000,00",
-                    endereco: "Terreno com 360m² (12x30), próximo à estação Jardim Primavera.",
-                    descricao: "Com duas casas independentes: Casa 1: 3 quartos, sala ampla, cozinha, banheiro e varanda. Casa 2: 2 quartos, sala, cozinha, banheiro e varanda. Quintal amplo nos fundos, com poço artesiano. Ideal para lazer, horta ou novas construções. Ótima opção para morar, investir ou gerar renda com aluguel.",
-                    imagens: ["imovel1/foto1.png","imovel1/foto2.png","imovel1/foto3.png","imovel1/foto4.png"]
-                },
-                {
-                    numero: 2,
-                    valor: "R$ 370.000,00",
-                    endereco: "Localização privilegiada, em frente à Unigranrio.",
-                    descricao: "Imóvel composto por 2 kitnets e 1 casa com suíte. Ideal para estudantes ou investidores.",
-                    imagens: ["imovel2/foto1.png","imovel2/foto2.png","imovel2/foto3.png","imovel2/foto4.png"]
-                },
-                {
-                    numero: 3,
-                    valor: "R$ 380.000,00",
-                    endereco: "Casa com 2 quartos, quintal e garagem..",
-                    descricao: "Localizada em bairro tranquilo e com infraestrutura completa.",
-                    imagens: ["imovel3/foto1.png","imovel3/foto2.png","imovel3/foto3.png","imovel3/foto4.png"]
-                },
-                {
-                    numero: 4,
-                    valor: "R$ 650.000,00",
-                    endereco: "Apartamento com 3 quartos, sendo  1 suíte, vaga de garagem e varanda gourmet.",
-                    descricao: "Localizado próximo ao centro.",
-                    imagens: ["imovel4/foto1.png","imovel4/foto2.png","imovel4/foto3.png","imovel4/foto4.png"]
-                },
-                {
-                    numero: 5,
-                    valor: "R$ 500.000,00",
-                    endereco: "",
-                    descricao: "Sobrado com 4 quartos, escritório, garagem para 3 carros, área gourmet e churrasqueira.",
-                    imagens: ["imovel5/foto1.png","imovel5/foto2.png","imovel5/foto3.png","imovel5/foto4.png"]
-                },
-                {
-                    numero: 6,
-                    valor: "R$ 735.000,00",
-                    endereco: "Localizada próxima a escolas e ao comércio.",
-                    descricao: "Casa térrea com 3 quartos, cozinha planejada e lavanderia coberta.",
-                    imagens: ["imovel6/foto1.png","imovel6/foto2.png","imovel6/foto3.png","imovel6/foto4.png"]
-                },
-                {
-                    numero: 7,
-                    valor: "R$ 530.000,00",
-                    endereco: "Apartamento no Condomínio Amazonas – Duque de Caxias/RJ.",
-                    descricao: `Localizado no 4º andar, com sol da manhã, bem iluminado e arejado.
-                Possui 2 quartos, sendo 1 suíte com ar-condicionado e armários planejados.
-                Sala ampla com cerâmica tipo tijolinho, teto rebaixado em gesso e piso em porcelanato.
-                Varanda charmosa, ideal para momentos relaxantes.
-                Cozinha espaçosa e ventilada, com área de serviço integrada.
-                Banheiro social confortável e funcional.
-                1 vaga de garagem.`,
-                    imagens: [
-                        "imovel7/foto1.png",
-                        "imovel7/foto2.png",
-                        "imovel7/foto3.png",
-                        "imovel7/foto4.png"
-                    ]
-                }
-                        
-                    
-                },
-                {
-                    numero: 8,
-                    valor: "R$ 370.000,00",
-                    endereco: "Localização privilegiada, em frente à Unigranrio.",
-                    descricao: "Imóvel composto por 2 kitnets e 1 casa com suíte. Ideal para estudantes ou investidores.",
-                    imagens: ["imovel2/foto1.png","imovel2/foto2.png","imovel2/foto3.png","imovel2/foto4.png"]
-                },
-                {
-                    numero: 9,
-                    valor: "R$ 370.000,00",
-                    endereco: "Localização privilegiada, em frente à Unigranrio.",
-                    descricao: "Imóvel composto por 2 kitnets e 1 casa com suíte. Ideal para estudantes ou investidores.",
-                    imagens: ["imovel2/foto1.png","imovel2/foto2.png","imovel2/foto3.png","imovel2/foto4.png"]
-                },
-                {
-                    numero: 10,
-                    valor: "R$ 370.000,00",
-                    endereco: "Localização privilegiada, em frente à Unigranrio.",
-                    descricao: "Imóvel composto por 2 kitnets e 1 casa com suíte. Ideal para estudantes ou investidores.",
-                    imagens: ["imovel2/foto1.png","imovel2/foto2.png","imovel2/foto3.png","imovel2/foto4.png"]
-                },
-                {
-                    numero: 11,
-                    valor: "R$ 370.000,00",
-                    endereco: "Localização privilegiada, em frente à Unigranrio.",
-                    descricao: "Imóvel composto por 2 kitnets e 1 casa com suíte. Ideal para estudantes ou investidores.",
-                    imagens: ["imovel2/foto1.png","imovel2/foto2.png","imovel2/foto3.png","imovel2/foto4.png"]
-                },
-                {
-                    numero: 12,
-                    valor: "R$ 370.000,00",
-                    endereco: "Localização privilegiada, em frente à Unigranrio.",
-                    descricao: "Imóvel composto por 2 kitnets e 1 casa com suíte. Ideal para estudantes ou investidores.",
-                    imagens: ["imovel2/foto1.png","imovel2/foto2.png","imovel2/foto3.png","imovel2/foto4.png"]
-                },
-                {
-                    numero: 13,
-                    valor: "R$ 370.000,00",
-                    endereco: "Localização privilegiada, em frente à Unigranrio.",
-                    descricao: "Imóvel composto por 2 kitnets e 1 casa com suíte. Ideal para estudantes ou investidores.",
-                    imagens: ["imovel2/foto1.png","imovel2/foto2.png","imovel2/foto3.png","imovel2/foto4.png"]
-                },
-                {
-                    numero: 14,
-                    valor: "R$ 370.000,00",
-                    endereco: "Localização privilegiada, em frente à Unigranrio.",
-                    descricao: "Imóvel composto por 2 kitnets e 1 casa com suíte. Ideal para estudantes ou investidores.",
-                    imagens: ["imovel2/foto1.png","imovel2/foto2.png","imovel2/foto3.png","imovel2/foto4.png"]
-                },
-                {
-                    numero: 15,
-                    valor: "R$ 370.000,00",
-                    endereco: "Localização privilegiada, em frente à Unigranrio.",
-                    descricao: "Imóvel composto por 2 kitnets e 1 casa com suíte. Ideal para estudantes ou investidores.",
-                    imagens: ["imovel2/foto1.png","imovel2/foto2.png","imovel2/foto3.png","imovel2/foto4.png"]
-                },
-                {
-                    numero: 16,
-                    valor: "R$ 370.000,00",
-                    endereco: "Localização privilegiada, em frente à Unigranrio.",
-                    descricao: "Imóvel composto por 2 kitnets e 1 casa com suíte. Ideal para estudantes ou investidores.",
-                    imagens: ["imovel2/foto1.png","imovel2/foto2.png","imovel2/foto3.png","imovel2/foto4.png"]
-                },
-                {
-                    numero: 17,
-                    valor: "R$ 370.000,00",
-                    endereco: "Localização privilegiada, em frente à Unigranrio.",
-                    descricao: "Imóvel composto por 2 kitnets e 1 casa com suíte. Ideal para estudantes ou investidores.",
-                    imagens: ["imovel2/foto1.png","imovel2/foto2.png","imovel2/foto3.png","imovel2/foto4.png"]
-                },
-                {
-                    numero: 18,
-                    valor: "R$ 370.000,00",
-                    endereco: "Localização privilegiada, em frente à Unigranrio.",
-                    descricao: "Imóvel composto por 2 kitnets e 1 casa com suíte. Ideal para estudantes ou investidores.",
-                    imagens: ["imovel2/foto1.png","imovel2/foto2.png","imovel2/foto3.png","imovel2/foto4.png"]
-                },
-                {
-                    numero: 19,
-                    valor: "R$ 370.000,00",
-                    endereco: "Localização privilegiada, em frente à Unigranrio.",
-                    descricao: "Imóvel composto por 2 kitnets e 1 casa com suíte. Ideal para estudantes ou investidores.",
-                    imagens: ["imovel2/foto1.png","imovel2/foto2.png","imovel2/foto3.png","imovel2/foto4.png"]
-                },
-                {
-                    numero: 20,
-                    valor: "R$ 370.000,00",
-                    endereco: "Localização privilegiada, em frente à Unigranrio.",
-                    descricao: "Imóvel composto por 2 kitnets e 1 casa com suíte. Ideal para estudantes ou investidores.",
-                    imagens: ["imovel2/foto1.png","imovel2/foto2.png","imovel2/foto3.png","imovel2/foto4.png"]
-                },
-                {
-                    numero: 21,
-                    valor: "R$ 370.000,00",
-                    endereco: "Localização privilegiada, em frente à Unigranrio.",
-                    descricao: "Imóvel composto por 2 kitnets e 1 casa com suíte. Ideal para estudantes ou investidores.",
-                    imagens: ["imovel2/foto1.png","imovel2/foto2.png","imovel2/foto3.png","imovel2/foto4.png"]
-                },
-                {
-                    numero: 22,
-                    valor: "R$ 370.000,00",
-                    endereco: "Localização privilegiada, em frente à Unigranrio.",
-                    descricao: "Imóvel composto por 2 kitnets e 1 casa com suíte. Ideal para estudantes ou investidores.",
-                    imagens: ["imovel2/foto1.png","imovel2/foto2.png","imovel2/foto3.png","imovel2/foto4.png"]
-                },
-                {
-                    numero: 23,
-                    valor: "R$ 370.000,00",
-                    endereco: "Localização privilegiada, em frente à Unigranrio.",
-                    descricao: "Imóvel composto por 2 kitnets e 1 casa com suíte. Ideal para estudantes ou investidores.",
-                    imagens: ["imovel2/foto1.png","imovel2/foto2.png","imovel2/foto3.png","imovel2/foto4.png"]
-                },
-                {
-                    numero: 24,
-                    valor: "R$ 370.000,00",
-                    endereco: "Localização privilegiada, em frente à Unigranrio.",
-                    descricao: "Imóvel composto por 2 kitnets e 1 casa com suíte. Ideal para estudantes ou investidores.",
-                    imagens: ["imovel2/foto1.png","imovel2/foto2.png","imovel2/foto3.png","imovel2/foto4.png"]
-                },
-                {
-                    numero: 25,
-                    valor: "R$ 370.000,00",
-                    endereco: "Localização privilegiada, em frente à Unigranrio.",
-                    descricao: "Imóvel composto por 2 kitnets e 1 casa com suíte. Ideal para estudantes ou investidores.",
-                    imagens: ["imovel2/foto1.png","imovel2/foto2.png","imovel2/foto3.png","imovel2/foto4.png"]
-                },
-                {
-                    numero: 26,
-                    valor: "R$ 370.000,00",
-                    endereco: "Localização privilegiada, em frente à Unigranrio.",
-                    descricao: "Imóvel composto por 2 kitnets e 1 casa com suíte. Ideal para estudantes ou investidores.",
-                    imagens: ["imovel2/foto1.png","imovel2/foto2.png","imovel2/foto3.png","imovel2/foto4.png"]
-                },
-                {
-                    numero: 27,
-                    valor: "R$ 370.000,00",
-                    endereco: "Localização privilegiada, em frente à Unigranrio.",
-                    descricao: "Imóvel composto por 2 kitnets e 1 casa com suíte. Ideal para estudantes ou investidores.",
-                    imagens: ["imovel2/foto1.png","imovel2/foto2.png","imovel2/foto3.png","imovel2/foto4.png"]
-                },
-                {
-                    numero: 28,
-                    valor: "R$ 370.000,00",
-                    endereco: "Localização privilegiada, em frente à Unigranrio.",
-                    descricao: "Imóvel composto por 2 kitnets e 1 casa com suíte. Ideal para estudantes ou investidores.",
-                    imagens: ["imovel2/foto1.png","imovel2/foto2.png","imovel2/foto3.png","imovel2/foto4.png"]
-                },
-                {
-                    numero: 29,
-                    valor: "R$ 370.000,00",
-                    endereco: "Localização privilegiada, em frente à Unigranrio.",
-                    descricao: "Imóvel composto por 2 kitnets e 1 casa com suíte. Ideal para estudantes ou investidores.",
-                    imagens: ["imovel2/foto1.png","imovel2/foto2.png","imovel2/foto3.png","imovel2/foto4.png"]
-                },
-                {
-                    numero: 30,
-                    valor: "R$ 370.000,00",
-                    endereco: "Localização privilegiada, em frente à Unigranrio.",
-                    descricao: "Imóvel composto por 2 kitnets e 1 casa com suíte. Ideal para estudantes ou investidores.",
-                    imagens: ["imovel2/foto1.png","imovel2/foto2.png","imovel2/foto3.png","imovel2/foto4.png"]
-                },
-                {
-                    numero: 31,
-                    valor: "R$ 370.000,00",
-                    endereco: "Localização privilegiada, em frente à Unigranrio.",
-                    descricao: "Imóvel composto por 2 kitnets e 1 casa com suíte. Ideal para estudantes ou investidores.",
-                    imagens: ["imovel2/foto1.png","imovel2/foto2.png","imovel2/foto3.png","imovel2/foto4.png"]
-                },
-                {
-                    numero: 32,
-                    valor: "R$ 370.000,00",
-                    endereco: "Localização privilegiada, em frente à Unigranrio.",
-                    descricao: "Imóvel composto por 2 kitnets e 1 casa com suíte. Ideal para estudantes ou investidores.",
-                    imagens: ["imovel2/foto1.png","imovel2/foto2.png","imovel2/foto3.png","imovel2/foto4.png"]
-                },
-                {
-                    numero: 33,
-                    valor: "R$ 370.000,00",
-                    endereco: "Localização privilegiada, em frente à Unigranrio.",
-                    descricao: "Imóvel composto por 2 kitnets e 1 casa com suíte. Ideal para estudantes ou investidores.",
-                    imagens: ["imovel2/foto1.png","imovel2/foto2.png","imovel2/foto3.png","imovel2/foto4.png"]
-                },
-                {
-                    numero: 34,
-                    valor: "R$ 370.000,00",
-                    endereco: "Localização privilegiada, em frente à Unigranrio.",
-                    descricao: "Imóvel composto por 2 kitnets e 1 casa com suíte. Ideal para estudantes ou investidores.",
-                    imagens: ["imovel2/foto1.png","imovel2/foto2.png","imovel2/foto3.png","imovel2/foto4.png"]
-                },
-                // Aqui você adiciona todos os outros imóveis 3 até 37 no mesmo formato
-                {
-                    numero: 35,
-                    valor: "R$ 480.000,00",
-                    endereco: "Rua Pardal Malet - Duque de Caxias.",
-                    descricao: "Amplo imóvel no Parque Lafayette, com casa principal de 2 quartos, varandões, garagem e cômodos arejados. Conta com uma casa no segundo pavimento e três no subsolo (duas inacabadas). Terreno de 400 m² com quintal. Ideal para morar e investir. Escritura de compra e venda e IPTU no nome. Mais informações pelo whatsapp.",
-                    imagens: ["imovel35/foto1.jpg","imovel35/foto2.jpg","imovel35/foto3.jpg","imovel35/foto4.jpg"]
-                },
-                {
-                    numero: 36,
-                    valor: "R$ 650.000,00",
-                    endereco: "Rua Bahia - 151.",
-                    descricao: "No 3º andar de prédio com 6 unidades por andar. Apartamento de 105 m² com 2 quartos, sala ampla, cozinha, banheiro, dependência, varandão, 2 vagas de garagem e lazer completo. Localização excelente, perto de comércio, escolas e transporte. Mais informações pelo whatsapp.",
-                    imagens: ["imovel36/foto1.jpg","imovel36/foto2.jpg","imovel36/foto3.jpg","imovel36/foto4.jpg"]
-                },
-                {
-                    numero: 37,
-                    valor: "R$ 650.000,00",
-                    endereco: "Rua Bahia Jardim 25 de Agosto.",
-                    descricao: "Apartamento de 3 quartos com cômodos amplos, totalizando 99m², 6º andar com vista livre. Condomínio com piscina, churrasqueira, salão de festas, play infantil e 2 vagas na garagem. Ideal para quem busca conforto, espaço e lazer em um só lugar! Mais informações pelo whatsapp.",
-                    imagens: ["imovel37/foto1.jpg","imovel37/foto2.jpg","imovel37/foto3.jpg","imovel37/foto4.jpg"]
-                }
-            ];
+<h1>Imóveis Disponíveis</h1>
 
-            imoveis.forEach(imovel => {
-                let imagensHtml = imovel.imagens.map(img => `<img src="imagens/${img}" alt="Imóvel ${imovel.numero}">`).join('');
-                document.write(`
-                    <div class="slide">
-                        <h2>Imóvel ${imovel.numero}</h2>
-                        <div class="image-grid">${imagensHtml}</div>
-                        <p><strong>Valor:</strong> ${imovel.valor}</p>
-                        <p>${imovel.endereco}</p>
-                        <p>${imovel.descricao}</p>
-                    </div>
-                `);
-            });
-        </script>
-    </div>
-    <div class="buttons">
-        <button id="prev">&#10094;</button>
-        <button id="next">&#10095;</button>
+<!-- Exemplo de imóvel - copie e cole para cada um -->
+<div class="imovel">
+    <div class="titulo">Imóvel 1</div>
+    <div class="valor">R$ 000.000,00</div>
+    <div class="endereco">Endereço do imóvel 1</div>
+    <div class="descricao">Linha 1 da descrição
+Linha 2 da descrição
+Linha 3 da descrição</div>
+    <div class="imagens">
+        <div class="linha">
+            <img src="imovel1/foto1.png" alt="">
+            <img src="imovel1/foto2.png" alt="">
+        </div>
+        <div class="linha">
+            <img src="imovel1/foto3.png" alt="">
+            <img src="imovel1/foto4.png" alt="">
+        </div>
     </div>
 </div>
 
-<script>
-    const track = document.getElementById("carouselTrack");
-    const slides = document.querySelectorAll(".slide");
-    let index = 0;
-
-    document.getElementById("next").addEventListener("click", () => {
-        index = (index + 1) % slides.length;
-        track.style.transform = `translateX(-${index * 100}%)`;
-    });
-
-    document.getElementById("prev").addEventListener("click", () => {
-        index = (index - 1 + slides.length) % slides.length;
-        track.style.transform = `translateX(-${index * 100}%)`;
-    });
-</script>
-
-</body>
-</html>
-
-
- 
-
-<!-- Navegação -->
-<!-- Seção de navegação -->
-     <div class="navigation-links">
-         <a class="button" href="index.html">Voltar</a>
-         <a class="button" href="contato.html">Avançar</a>
-     </div>
-
-<!-- Formulário de Contato -->
-<div class="contact-section" id="contato">
-    <h2>Entre em Contato</h2>
-    <form action="https://formsubmit.co/danieledecarvalhorodrigues46@gmail.com" method="POST">
-    <input type="text" name="nome" placeholder="Seu nome" required />
-    <input type="email" name="email" placeholder="Seu e-mail" required />
-    <textarea name="mensagem" rows="5" placeholder="Sua mensagem" required></textarea>
-    <button type="submit">Enviar</button>
-
-    <!-- Proteções e configurações -->
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_next" value="https://daniele917.github.io/imobiliaria/obrigado.html">
-        
-    </form>
-       
-       
+<!-- Repita este bloco até o imóvel 37 -->
+<div class="imovel">
+    <div class="titulo">Imóvel 2</div>
+    <div class="valor">R$ 000.000,00</div>
+    <div class="endereco">Endereço do imóvel 2</div>
+    <div class="descricao">Linha 1 da descrição
+Linha 2 da descrição
+Linha 3 da descrição</div>
+    <div class="imagens">
+        <div class="linha">
+            <img src="imovel2/foto1.png" alt="">
+            <img src="imovel2/foto2.png" alt="">
+        </div>
+        <div class="linha">
+            <img src="imovel2/foto3.png" alt="">
+            <img src="imovel2/foto4.png" alt="">
+        </div>
+    </div>
 </div>
 
-<!-- Botão WhatsApp -->
-<a class="whatsapp-button" href="https://wa.me/5521971406156" target="_blank" title="Fale conosco no WhatsApp">
-    💬
-</a>
+<!-- Continue até o imóvel 37 -->
+<!-- Apenas troque o número, preço, endereço, descrição e imagens -->
 
 </body>
 </html>
