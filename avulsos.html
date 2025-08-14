@@ -48,7 +48,7 @@
         border: none;
         padding: 10px;
         cursor: pointer;
-        font-size: 20px;
+       font-size: 20px;
         border-radius: 50%;
         transition: background 0.3s;
     }
@@ -67,122 +67,90 @@
 </style>
 </head>
 <body>
+<!-- Estrutura do imóvel -->
+<div class="imovel">
+  <h2>Imóvel 1</h2>
 
-<div class="carousel">
-    <div class="carousel-track" id="carouselTrack">
-        <script>
-            const imoveis = [
-                <div class="property">
-    <h2>Imóvel 1</h2>
-    <div class="image-grid">
-        <img src="imagens/imagens/imovel1/foto1.png" alt="Imóvel 1 - Foto 1">
-        <img src="imagens/imagens/imovel1/foto2.png" alt="Imóvel 1 - Foto 2">
-        <img src="imagens/imagens/imovel1/foto3.png" alt="Imóvel 1 - Foto 3">
-        <img src="imagens/imagens/imovel1/foto4.png" alt="Imóvel 1 - Foto 4">
+  <div class="carousel">
+    <button class="prev">&#10094;</button>
+    <div class="carousel-images">
+      <img src="img1.jpg" alt="Foto 1">
+      <img src="img2.jpg" alt="Foto 2">
+      <img src="img3.jpg" alt="Foto 3">
+      <img src="img4.jpg" alt="Foto 4">
     </div>
-    <p><strong>Valor:</strong> R$ 300.000,00</p>
-    <p>Terreno com 360m² (12x30), próximo à estação Jardim Primavera.</p>
-    <p><strong>Com duas casas independentes:</strong></p>
-    <ul>
-        <li><strong>Casa 1:</strong> 3 quartos, sala ampla, cozinha, banheiro e varanda.</li>
-        <li><strong>Casa 2:</strong> 2 quartos, sala, cozinha, banheiro e varanda.</li>
-    </ul>
-    <p>Quintal amplo nos fundos, com poço artesiano. Ideal para lazer, horta ou novas construções.</p>
-    <p>Ótima opção para morar, investir ou gerar renda com aluguel.</p>
-</div>
-                    
-                {
-                    numero: 2,
-                    valor: "R$ 370.000,00",
-                    endereco: "Localização privilegiada, em frente à Unigranrio.",
-                    descricao: `Imóvel composto por 2 kitnets e 1 casa com suíte.
-Ideal para estudantes ou investidores.`,
-                    imagens: ["imovel2/foto1.png","imovel2/foto2.png","imovel2/foto3.png","imovel2/foto4.png"]
-                },
-                {
-                    numero: 35,
-                    valor: "R$ 480.000,00",
-                    endereco: "Rua Pardal Malet - Duque de Caxias.",
-                    descricao: `Amplo imóvel no Parque Lafayette, com casa principal de 2 quartos, varandões, garagem e cômodos arejados.
-Conta com uma casa no segundo pavimento e três no subsolo (duas inacabadas).
-Terreno de 400 m² com quintal.
-Ideal para morar e investir.
-Escritura de compra e venda e IPTU no nome.
-Mais informações pelo whatsapp.`,
-                    imagens: ["imovel35/foto1.jpg","imovel35/foto2.jpg","imovel35/foto3.jpg","imovel35/foto4.jpg"]
-                },
-                {
-                    numero: 36,
-                    valor: "R$ 650.000,00",
-                    endereco: "Rua Bahia - 151.",
-                    descricao: `No 3º andar de prédio com 6 unidades por andar.
-Apartamento de 105 m² com 2 quartos, sala ampla, cozinha, banheiro, dependência, varandão, 2 vagas de garagem e lazer completo.
-Localização excelente, perto de comércio, escolas e transporte.
-Mais informações pelo whatsapp.`,
-                    imagens: ["imovel36/foto1.jpg","imovel36/foto2.jpg","imovel36/foto3.jpg","imovel36/foto4.jpg"]
-                },
-                {
-                    numero: 37,
-                    valor: "R$ 650.000,00",
-                    endereco: "Rua Bahia Jardim 25 de Agosto.",
-                    descricao: `Apartamento de 3 quartos com cômodos amplos, totalizando 99m², 6º andar com vista livre.
-Condomínio com piscina, churrasqueira, salão de festas, play infantil e 2 vagas na garagem.
-Ideal para quem busca conforto, espaço e lazer em um só lugar!
-Mais informações pelo whatsapp.`,
-                    imagens: ["imovel37/foto1.jpg","imovel37/foto2.jpg","imovel37/foto3.jpg","imovel37/foto4.jpg"]
-                }
-            ];
+    <button class="next">&#10095;</button>
+  </div>
 
-            imoveis.forEach(imovel => {
-                let imagensHtml = imovel.imagens.map(img => `<img src="imagens/${img}" alt="Imóvel ${imovel.numero}">`).join('');
-                document.write(`
-                    <div class="slide">
-                        <h2>Imóvel ${imovel.numero}</h2>
-                        <div class="image-grid">${imagensHtml}</div>
-                        <p><strong>Valor:</strong> ${imovel.valor}</p>
-                        <p>${imovel.endereco}</p>
-                        <p style="white-space: pre-line;">${imovel.descricao}</p>
-                    </div>
-                `);
-            });
-        </script>
-    </div>
-    <div class="buttons">
-        <button id="prev">&#10094;</button>
-        <button id="next">&#10095;</button>
-    </div>
+  <p><strong>Valor:</strong> R$ 300.000,00</p>
+  <p>Descrição do imóvel...</p>
 </div>
+
+<style>
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 400px; /* largura máxima do carrossel */
+  margin-bottom: 20px;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.carousel-images {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-images img {
+  width: 100%;
+  flex-shrink: 0;
+  border-radius: 5px;
+}
+
+.carousel button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.3);
+  color: white;
+  border: none;
+  font-size: 24px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.carousel .prev {
+  left: 5px;
+}
+
+.carousel .next {
+  right: 5px;
+}
+</style>
 
 <script>
-    const track = document.getElementById("carouselTrack");
-    const slides = document.querySelectorAll(".slide");
-    let index = 0;
+document.querySelectorAll('.carousel').forEach(carousel => {
+  const imagesContainer = carousel.querySelector('.carousel-images');
+  const images = imagesContainer.querySelectorAll('img');
+  const prevBtn = carousel.querySelector('.prev');
+  const nextBtn = carousel.querySelector('.next');
+  let index = 0;
 
-    document.getElementById("next").addEventListener("click", () => {
-        index = (index + 1) % slides.length;
-        track.style.transform = `translateX(-${index * 100}%)`;
-    });
+  function showSlide(i) {
+    if(i < 0) index = images.length - 1;
+    else if(i >= images.length) index = 0;
+    else index = i;
 
-    document.getElementById("prev").addEventListener("click", () => {
-        index = (index - 1 + slides.length) % slides.length;
-        track.style.transform = `translateX(-${index * 100}%)`;
-    });
+    imagesContainer.style.transform = `translateX(${-index * 100}%)`;
+  }
+
+  prevBtn.addEventListener('click', () => showSlide(index - 1));
+  nextBtn.addEventListener('click', () => showSlide(index + 1));
+
+  showSlide(index);
+});
 </script>
-
-<!-- Navegação -->
-<div class="navigation-links">
-    <a class="button" href="index.html">Voltar</a>
-    <a class="button" href="contato.html">Avançar</a>
-</div>
-
-<!-- Formulário de Contato -->
-<div class="contact-section" id="contato">
-    <h2>Entre em Contato</h2>
-    <form action="https://formsubmit.co/danieledecarvalhorodrigues46@gmail.com" method="POST">
-        <input type="text" name="nome" placeholder="Seu nome" required />
-        <input type="email" name="email" placeholder="Seu e-mail" required />
-        <textarea name="mensagem" rows="5" placeholder="Sua mensagem" required></textarea>
-        <button type="submit">Enviar</button>
 
         <!-- Proteções e configurações -->
         <input type="hidden" name="_captcha" value="false">
