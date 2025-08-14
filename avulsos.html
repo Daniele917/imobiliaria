@@ -72,18 +72,25 @@
     <div class="carousel-track" id="carouselTrack">
         <script>
             const imoveis = [
-                {
-                    numero: 1,
-                    valor: "R$ 300.000,00",
-                    endereco: "Terreno com 360m² (12x30), próximo à estação Jardim Primavera.",
-                    descricao: `Com duas casas independentes:
-Casa 1: 3 quartos, sala ampla, cozinha, banheiro e varanda.
-Casa 2: 2 quartos, sala, cozinha, banheiro e varanda.
-Quintal amplo nos fundos, com poço artesiano.
-Ideal para lazer, horta ou novas construções.
-Ótima opção para morar, investir ou gerar renda com aluguel.`,
-                    imagens: ["imovel1/foto1.png","imovel1/foto2.png","imovel1/foto3.png","imovel1/foto4.png"]
-                },
+                <div class="property">
+    <h2>Imóvel 1</h2>
+    <div class="image-grid">
+        <img src="imagens/imagens/imovel1/foto1.png" alt="Imóvel 1 - Foto 1">
+        <img src="imagens/imagens/imovel1/foto2.png" alt="Imóvel 1 - Foto 2">
+        <img src="imagens/imagens/imovel1/foto3.png" alt="Imóvel 1 - Foto 3">
+        <img src="imagens/imagens/imovel1/foto4.png" alt="Imóvel 1 - Foto 4">
+    </div>
+    <p><strong>Valor:</strong> R$ 300.000,00</p>
+    <p>Terreno com 360m² (12x30), próximo à estação Jardim Primavera.</p>
+    <p><strong>Com duas casas independentes:</strong></p>
+    <ul>
+        <li><strong>Casa 1:</strong> 3 quartos, sala ampla, cozinha, banheiro e varanda.</li>
+        <li><strong>Casa 2:</strong> 2 quartos, sala, cozinha, banheiro e varanda.</li>
+    </ul>
+    <p>Quintal amplo nos fundos, com poço artesiano. Ideal para lazer, horta ou novas construções.</p>
+    <p>Ótima opção para morar, investir ou gerar renda com aluguel.</p>
+</div>
+                    
                 {
                     numero: 2,
                     valor: "R$ 370.000,00",
