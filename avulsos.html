@@ -1,167 +1,681 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Carrossel de Imóveis</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background: #f4f4f4;
-        margin: 0;
-        padding: 20px;
-    }
-    .carousel {
-        position: relative;
-        max-width: 600px;
-        margin: auto;
-        overflow: hidden;
-        background: white;
-        border-radius: 10px;
-        box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    }
-    .carousel-track {
-        display: flex;
-        transition: transform 0.5s ease-in-out;
-    }
-    .slide {
-        min-width: 100%;
-        box-sizing: border-box;
-        padding: 15px;
-    }
-    .slide img {
-        max-width: 100%;
-        margin-bottom: 10px;
-        border-radius: 8px;
-    }
-    .buttons {
-        position: absolute;
-        top: 50%;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        transform: translateY(-50%);
-    }
-    .buttons button {
-        background: rgba(0,0,0,0.5);
-        color: white;
-        border: none;
-        padding: 10px;
-        cursor: pointer;
-       font-size: 20px;
-        border-radius: 50%;
-        transition: background 0.3s;
-    }
-    .buttons button:hover {
-        background: rgba(0,0,0,0.8);
-    }
-    .image-grid {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 5px;
-    }
-    .image-grid img {
-        width: calc(50% - 5px);
-        border-radius: 8px;
-    }
-</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Imóveis Disponíveis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            color: #333;
+        }
+        .galeria {
+            position: relative;
+            max-width: 650px; /* Adaptei a largura para sua galeria */
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .property {
+            display: none; /* Esconde todos os imóveis por padrão */
+        }
+        .property.active {
+            display: block; /* Mostra apenas o imóvel ativo */
+        }
+        .property h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+            text-align: center; /* Centralizei o título para melhor visualização */
+        }
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .property img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .property p {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 5px;
+            line-height: 1.5;
+        }
+        .navigation-links {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .navigation-links a {
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: #000;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .navigation-links a:hover {
+            background-color: #333;
+        }
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            text-decoration: none;
+            z-index: 1000;
+        }
+        
+        /* Novas regras para os botões de navegação */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            z-index: 10;
+        }
+        .prev {
+            left: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+    </style>
 </head>
-<body>
-<!-- Estrutura do imóvel -->
-<div class="imovel">
-  <h2>Imóvel 1</h2>
+<body id="topo">
 
-  <div class="carousel">
-    <button class="prev">&#10094;</button>
-    <div class="carousel-images">
-      <img src="img1.jpg" alt="Foto 1">
-      <img src="img2.jpg" alt="Foto 2">
-      <img src="img3.jpg" alt="Foto 3">
-      <img src="img4.jpg" alt="Foto 4">
+<h1>Avulsos</h1>
+
+<div class="galeria">
+
+    <div class="property">
+        <h2>Imóvel 1</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel1/foto1.png" alt="Imóvel 1 - Foto 1">
+            <img src="imagens/imagens/imovel1/foto2.png" alt="Imóvel 1 - Foto 2">
+            <img src="imagens/imagens/imovel1/foto3.png" alt="Imóvel 1 - Foto 3">
+            <img src="imagens/imagens/imovel1/foto4.png" alt="Imóvel 1 - Foto 4">
+        </div>
+        <p><strong>Valor:</strong> R$ 300.000,00</p>
+        <p>Terreno com 360m² (12x30), próximo à estação Jardim Primavera.</p>
+        <p><strong>Com duas casas independentes:</strong></p>
+        <ul>
+            <li><strong>Casa 1:</strong> 3 quartos, sala ampla, cozinha, banheiro e varanda.</li>
+            <li><strong>Casa 2:</strong> 2 quartos, sala, cozinha, banheiro e varanda.</li>
+        </ul>
+        <p>Quintal amplo nos fundos, com poço artesiano. Ideal para lazer, horta ou novas construções.</p>
+        <p>Ótima opção para morar, investir ou gerar renda com aluguel.</p>
     </div>
-    <button class="next">&#10095;</button>
-  </div>
 
-  <p><strong>Valor:</strong> R$ 300.000,00</p>
-  <p>Descrição do imóvel...</p>
+    <div class="property">
+        <h2>Imóvel 2</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel2/foto1.png" alt="Imóvel 2 - Foto 1">
+            <img src="imagens/imagens/imovel2/foto4.png" alt="Imóvel 2 - Foto 4">
+            <img src="imagens/imagens/imovel2/foto3.png" alt="Imóvel 2 - Foto 3">
+            <img src="imagens/imagens/imovel2/foto2.png" alt="Imóvel 2 - Foto 2">
+        </div>
+        <p><strong>Valor:</strong> R$ 370.000,00</p>
+        <p>Localização privilegiada, em frente à Unigranrio.Imóvel composto por 2 kitnets e 1 casa com suíte.</p>
+        <p>Ideal para estudantes ou investidores.</p>
+    </div>
+
+    <div class="property">
+        <h2>Imóvel 3</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel3/foto1.png" alt="Imóvel 3 - Foto 1">
+            <img src="imagens/imagens/imovel3/foto2.png" alt="Imóvel 3 - Foto 2">
+            <img src="imagens/imagens/imovel3/foto3.png" alt="Imóvel 3 - Foto 3">
+            <img src="imagens/imagens/imovel3/foto4.png" alt="Imóvel 3 - Foto 4">
+        </div>
+        <p><strong>Valor:</strong> R$ 380.000,00</p>
+        <p>Casa com 2 quartos, quintal e garagem.</p>
+        <p>Localizada em bairro tranquilo e com infraestrutura completa.</p>
+    </div>
+
+    <div class="property">
+        <h2>Imóvel 4</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel4/foto1.png" alt="Imóvel 4 - Foto 1">
+            <img src="imagens/imagens/imovel4/foto2.png" alt="Imóvel 4 - Foto 2">
+            <img src="imagens/imagens/imovel4/foto3.png" alt="Imóvel 4 - Foto 3">
+            <img src="imagens/imagens/imovel4/foto4.png" alt="Imóvel 4 - Foto 4">
+        </div>
+        <p><strong>Valor:</strong> R$ 650.000,00</p>
+        <p>Apartamento com 3 quartos, sendo  1 suíte, vaga de garagem e varanda gourmet.</p>
+        <p>Localizado próximo ao centro.</p>
+    </div>
+
+    <div class="property">
+        <h2>Imóvel 5</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel5/foto1.png" alt="Imóvel 5 - Foto 1">
+            <img src="imagens/imagens/imovel5/foto2.png" alt="Imóvel 5 - Foto 2">
+            <img src="imagens/imagens/imovel5/foto3.png" alt="Imóvel 5 - Foto 3">
+            <img src="imagens/imagens/imovel5/foto4.png" alt="Imóvel 5 - Foto 4">
+        </div>
+        <p><strong>Valor:</strong> R$ 500.000,00</p>
+        <p>Sobrado com 4 quartos, escritório, garagem para 3 carros, área gourmet e churrasqueira.</p>
+    </div>
+
+    <div class="property">
+        <h2>Imóvel 6</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel6/foto1.png" alt="Imóvel 6 - Foto 1">
+            <img src="imagens/imagens/imovel6/foto2.png" alt="Imóvel 6 - Foto 2">
+            <img src="imagens/imagens/imovel6/foto3.png" alt="Imóvel 6 - Foto 3">
+            <img src="imagens/imagens/imovel6/foto4.png" alt="Imóvel 6 - Foto 4">
+        </div>
+        <p><strong>Valor:</strong> R$ 735.000,00</p>
+        <p>Casa térrea com 3 quartos, cozinha planejada e lavanderia coberta.</p>
+        <p>Localizada próxima a escolas e ao comércio.</p>
+    </div>
+
+    <div class="property">
+        <h2>Imóvel 7</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel7/foto1.png" alt="Imóvel 7 - Foto 1">
+            <img src="imagens/imagens/imovel7/foto2.png" alt="Imóvel 7 - Foto 2">
+            <img src="imagens/imagens/imovel7/foto3.png" alt="Imóvel 7 - Foto 3">
+            <img src="imagens/imagens/imovel7/foto5.png" alt="Imóvel 7 - Foto 4">
+        </div>
+        <p><strong>Valor:</strong> R$ 530.000,00</p>
+        <p>Apartamento no Condomínio Amazonas – Duque de Caxias/RJ.</p>
+        <p>Localizado no 4º andar, com sol da manhã, bem iluminado e arejado.</p>
+        <p>Possui 2 quartos, sendo 1 suíte com ar-condicionado e armários planejados.</p>
+        <p>Sala ampla com cerâmica tipo tijolinho, teto rebaixado em gesso e piso em porcelanato.</p>
+        <p>Varanda charmosa, ideal para momentos relaxantes.</p>
+        <p>Cozinha espaçosa e ventilada, com área de serviço integrada.</p>
+        <p>Banheiro social confortável e funcional.</p>
+        <p>1 vaga de garagem</p>
+    </div>
+
+    <div class="property">
+        <h2>Imóvel 8</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel8/foto1.png" alt="Imóvel 8 - Foto 1">
+            <img src="imagens/imagens/imovel8/foto2.png" alt="Imóvel 8 - Foto 2">
+            <img src="imagens/imagens/imovel8/foto3.png" alt="Imóvel 8 - Foto 3">
+            <img src="imagens/imagens/imovel8/foto5.png" alt="Imóvel 8 - Foto 4">
+        </div>
+        <p><strong>Valor:</strong> R$ 720.000,00</p>
+        <p>Três casas independentes no mesmo terreno, localizadas na Rua das Acácias – Jardim Primavera:</p>
+        <p><strong>Casa 1 – Térrea e funcional:</strong> 2 quartos, sala arejada, cozinha prática, banheiro social e varanda.</p>
+        <p><strong>Valor individual:</strong> R$ 250.000,00</p>
+        <p><strong>Casa 2 – Aconchego e simplicidade:</strong> 1 quarto, sala, cozinha, banheiro e varanda.</p>
+        <p><strong>Valor individual:</strong> R$ 170.000,00</p>
+        <p><strong>Casa 3 – Sofisticação no segundo andar:</strong> Suíte master com banheiro espaçoso, banheira de hidromassagem e espaço para closet.</p>
+        <p><strong>Valor individual:</strong> R$ 300.000,00</p>
+    </div>
+
+    <div class="property">
+        <h2>Imóvel 9</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel10/foto1.png" alt="Imóvel 9 - Foto 1">
+            <img src="imagens/imagens/imovel10/foto2.png" alt="Imóvel 9 - Foto 2">
+            <img src="imagens/imagens/imovel10/foto3.png" alt="Imóvel 9 - Foto 3">
+            <img src="imagens/imagens/imovel10/foto4.png" alt="Imóvel 9 - Foto 4">
+        </div>
+        <p><strong>Valor:</strong> R$ 600.000,00</p>
+        <p>Rua Leopoldo Miguez, próximo à Av. Automóvel Clube e do Posto São Jorge.</p>
+        <p>Casa com 4 quartos (sendo 1 suíte), sala ampla com 86m², cozinha planejada, lavabo e banheiro social.</p>
+        <p>Área externa com piscina, espaço gourmet e quintal com capacidade para até 8 carros.</p>
+        <p>Acabamentos de alto padrão e localização excelente.</p>
+        <p>Mais informações pelo whatsapp.</p>
+    </div>
+
+    <div class="property">
+        <h2>Imóvel 10</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel11/foto1.png" alt="Imóvel 10 - Foto 1">
+            <img src="imagens/imagens/imovel11/foto2.png" alt="Imóvel 10 - Foto 2">
+            <img src="imagens/imagens/imovel11/foto3.png" alt="Imóvel 10 - Foto 3">
+            <img src="imagens/imagens/imovel11/foto4.png" alt="Imóvel 10 - Foto 4">
+        </div>
+        <p><strong>Valor:</strong> R$ 680.000,00</p>
+        <p>Linda casa de 2 quartos, localizada na Vila Itamarati - Duque de Caxias.</p>
+        <p>Imóvel com loja na frente: conforto, renda extra e excelente localização!</p>
+        <p>Está procurando mais do que uma casa?</p>
+        <p>Que tal um lar completo, com espaço, lazer e ainda a oportunidade de empreender ou garantir uma renda extra?</p>
+        <p>Esse imóvel tem tudo isso e muito mais!</p>
+        <p><strong>Confira os destaques:</strong></p>
+        <ul>
+            <li>2 quartos aconchegantes, prontos para acolher sua familia.</li>
+            <li>Sala ampla com porta de blindex, perfeita para momentos especiais.</li>
+            <li>Cozinha moderna, com pia em granito e revestimento até o teto.</li>
+        </ul>
+    </div>
+
+    <div class="property">
+        <h2>Imóvel 11</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel12/foto1.png" alt="Imóvel 11 - Foto 1">
+            <img src="imagens/imagens/imovel12/foto2.png" alt="Imóvel 11 - Foto 2">
+            <img src="imagens/imagens/imovel12/foto3.png" alt="Imóvel 11 - Foto 3">
+            <img src="imagens/imagens/imovel12/foto4.png" alt="Imóvel 11 - Foto 4">
+        </div>
+        <p><strong>Valor:</strong> R$ 950.000,00</p>
+        <p>Rua Lomas Valentinas, 60 -Jardim Vinte e Cinco de Agosto.</p>
+        <p>Casa totalmente plana, sem escadas ou desníveis, projetada para oferecer liberdade e praticidade.</p>
+        <p>São 3 quartos amplos e iluminados, além de uma sala majestosa, com impressionantes 28m².</p>
+        <p>A área de serviço é espaçosa e arejada.O quintal convida a momentos de descontração, sol e liberdade.</p>
+        <p>Na frente,um jardim encantador com vasos decorativos dá um toque especial de carinho e beleza.</p>
+        <p>Localizada em bairro reservado, seguro e totalmente familiar,com vigilância 24 horas, portões de acesso controlado e guarita na entrada.</p>
+        <p><strong>Agente sua visita.</strong></p>
+    </div>
+
+    <div class="property">
+        <h2>Imóvel 12</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel13/foto1.png" alt="Imóvel 12 - Foto 1">
+            <img src="imagens/imagens/imovel13/foto2.png" alt="Imóvel 12 - Foto 4">
+            <img src="imagens/imagens/imovel13/foto3.png" alt="Imóvel 12 - Foto 3">
+            <img src="imagens/imagens/imovel13/foto4.png" alt="Imóvel 12 - Foto 2">
+        </div>
+        <p><strong>Valor:</strong>R$ 2.890.000,00 </p>
+        <p>Encante-se com esta jóia rara no condomínio Santa Mônica Residências - Rua Pedro Ludovico, 195,Barra da Tijuca.</p>
+        <p>Na área externa frontal, o charme do jardim com fonte decorativa combina com a funcionalidade da cisterna de 15 mil litros.</p>
+        <p>Nos fundos, o lazer é completo: piscina, churrasqueira com bancada de apoio, sauna a vapor com chuveiro, além de banheiro e chuveiro externo para maior comodidade.</p>
+        <p>No segundo pavimento, a casa oferece duas suítes confortáveis, sendo uma suíte master com closets espaçosos,  banheiro de corredor e um mezanino encantador, ideal como sala íntima ou escritório.</p>
+        <p>O terceiro pavimento garante ainda mais privacidade, com dois quartos (um com closet), banheiro completo e uma sala íntima acolhedora, perfeita para relaxar, meditar ou criar um espaço de leitura.</p>
+    </div>
+
+    <div class="property">
+        <h2>Imóvel 13</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel14/foto1.png" alt="Imóvel 13 - Foto 1">
+            <img src="imagens/imagens/imovel14/foto2.png" alt="Imóvel 13 - Foto 2">
+            <img src="imagens/imagens/imovel14/foto3.png" alt="Imóvel 13 - Foto 3">
+            <img src="imagens/imagens/imovel14/foto4.png" alt="Imóvel 13 - Foto 4">
+        </div>
+        <p><strong>Valor:</strong> R$ 10.000.000,00</p>
+        <p>Imóvel amplo com quadra coberta - ideal para escolas, igrejas, clínicas, hospitais ou e...</p>
+        <p>Prédio com 3 pavimentos estruturados,Diversas salas amplas, bem ventiladas e com iluminação natural.</p>
+        <p>Muro alto com cerca de segurança e sistema básico instalado.</p>
+        <p><strong>Inúmeras possibilidades de uso:</strong></p>
+        <ul>
+            <li>Local com infraestrutura urbana consolidada e fácil acesso</li>
+            <li>Estrutura adaptável para atender normas sanitárias e acessibilidade.</li>
+            <li>Espaços amplos que favorecem projetos de reforma ou personalização.</li>
+            <li>A quadra coberta pode ser aproveitada para atividades físicas, encontros ou transformada em estacionamento coberto.</li>
+        </ul>
+        <p>Este é o tipo de imóvel que oferece flexibilidade, segurança e ótimo custo-benefício, ideal para investidores ou operações já consolidadas.</p>
+        <p><strong>Entre em contato e agende uma visita para conhecer de perto esse imóvel que pode ser a base do seu próximo grande projeto!</strong></p>
+    </div>
+
+    <div class="property">
+        <h2>Imóvel 14</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel15/foto1.png" alt="Imóvel 14 - Foto 1">
+            <img src="imagens/imagens/imovel15/foto2.png" alt="Imóvel 14 - Foto 2">
+            <img src="imagens/imagens/imovel15/foto3.png" alt="Imóvel 14 - Foto 3">
+            <img src="imagens/imagens/imovel15/foto4.png" alt="Imóvel 14 - Foto 4">
+        </div>
+        <p><strong>Valor:</strong> R$ 2.500.000,00</p>
+        <p><strong>Galpão Comercial à Venda em Duque de Caxias - esquina estratégica com grande potencial!</strong></p>
+        <p>Localizado na movimentada Rua Manuel Telles, em Duque de Caxias.</p>
+        <p>Este galpão é como uma tela em branco, pronto para receber um novo projeto de sucesso.</p>
+        <p>Com visão e criatividade, pode se transformar em um ponto de referência na cidade.</p>
+        <p><strong>Agende uma visita.</strong></p>
+    </div>
+
+    <div class="property">
+        <h2>Imóvel 15</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel16/foto1.png" alt="Imóvel 15 - Foto 1">
+            <img src="imagens/imagens/imovel16/foto2.png" alt="Imóvel 15 - Foto 2">
+            <img src="imagens/imagens/imovel16/foto3.png" alt="Imóvel 15 - Foto 3">
+            <img src="imagens/imagens/imovel16/foto4.png" alt="Imóvel 15 - Foto 4">
+        </div>
+        <p><strong>Valor:</strong> R$ 750.000,00</p>
+        <p>Lindo imóvel de 5 quartos, localizado na Rua João Teles - Parque Centenário.</p>
+        <p>Mansão histórica e imponente em Duque de Caxias - antiga residência do ex-prefeito Juberlan de Oliveira.</p>
+        <p>Oportunidade única de adquirir uma mansão de alto padrão, com valor histórico, localizada em uma das regiões mais tradicionais da cidade.</p>
+        <p>Este imóvel foi residência do ex-prefeito Juberlan de Oliveira, que governou o município entre 1986 e 1988, marcando um período importante na história política local.</p>
+        <p>Com projeto arquitetônico diferenciado e ambientes amplos, a propriedade oferece muito conforto e exclusividade.</p>
+    </div>
+
+    <div class="property">
+        <h2>Imóvel 16</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel17/foto1.png" alt="Imóvel 16 - Foto 1">
+            <img src="imagens/imagens/imovel17/foto2.png" alt="Imóvel 16 - Foto 2">
+            <img src="imagens/imagens/imovel17/foto3.png" alt="Imóvel 16 - Foto 3">
+            <img src="imagens/imagens/imovel17/foto4.png" alt="Imóvel 16 - Foto 4">
+        </div>
+        <p><strong>Valor:</strong> R$ 900.000,00</p>
+        <p>Seu novo lar no Jardim 25 de Agosto - Duque de Caxias.</p>
+        <p>Casa espaçosa na Rua Marcílio Dias, próximo da Praça da Maçonaria e do Hospital Mário Lioni.</p>
+        <p>São 3 quartos, sendo 1 suíte com closet e banheira.</p>
+        <p>Sala ampla, cozinha grande, terraço gourmet para 120 pessoas.</p>
+        <p>Conta ainda com 2 vagas de garagem, muito potencial e excelente localização!</p>
+    </div>
+
+    <div class="property">
+        <h2>Imóvel 17</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel18/foto1.png" alt="Imóvel 17 - Foto 1">
+            <img src="imagens/imagens/imovel18/foto2.png" alt="Imóvel 17 - Foto 2">
+            <img src="imagens/imagens/imovel18/foto3.png" alt="Imóvel 17 - Foto 3">
+            <img src="imagens/imagens/imovel18/foto4.png" alt="Imóvel 17 - Foto 4">
+        </div>
+        <p><strong>Valor:</strong> R$ 1.000.000,00</p>
+        <p>Oportunidade na Rua General Mitre-740, atrás do Caxias D’Or e ao lado do HSCOR!</p>
+        <p>Casa com 3 quartos, 2 salas, terraço, quintal, cisterna de 19 mil litros e garagem para 3 carros.</p>
+        <p>Terreno com 360m². Casa nos fundos ideal para aluguel ou escritório.</p>
+        <p><strong>Precisa de reforma.</strong></p>
+    </div>
+
+    <div class="property">
+        <h2>Imóvel 18</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel19/foto4.png" alt="Imóvel 18 - Foto 1">
+            <img src="imagens/imagens/imovel19/foto3.png" alt="Imóvel 18 - Foto 2">
+            <img src="imagens/imagens/imovel19/foto2.png" alt="Imóvel 18 - Foto 3">
+            <img src="imagens/imagens/imovel19/foto1.png" alt="Imóvel 18 - Foto 4">
+        </div>
+        <p><strong>Valor:</strong> R$ 900.000,00</p>
+        <p>Terreno de 500m² na Vila Itamaraty, próximo ao SASE e ao Centro de Caxias.</p>
+        <p>Região estratégica, com ótimo fluxo de veículos.</p>
+        <p>Possui duas casas construídas no terreno.</p>
+        <p><strong>Ideal para galpões, empresas ou investidores.</strong></p>
+        <p>Agende sua visita!</p>
+    </div>
+
+    <div class="property">
+        <h2>Imóvel 19</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel20/foto1.png" alt="Imóvel 19 - Foto 1">
+            <img src="imagens/imagens/imovel20/foto2.png" alt="Imóvel 19 - Foto 1">
+            <img src="imagens/imagens/imovel20/foto3.png" alt="Imóvel 19 - Foto 1">
+            <img src="imagens/imagens/imovel20/foto4.png" alt="Imóvel 19 - Foto 2">
+            <img src="imagens/imagens/imovel20/foto5.png" alt="Imóvel 19 - Foto 3">
+            <img src="imagens/imagens/imovel20/foto6.png" alt="Imóvel 19 - Foto 4">
+        </div>
+        <p><strong>Valor:</strong> R$ 900.000,00</p>
+        <p>Duque de Caxias - Jardim Vinte e Cinco de Agosto.</p>
+        <p>Imóvel muito bem localizado,em bairro nobre, rua tranquila e arborizada.</p>
+        <p>Composto por 2 quartos, sendo 1 suíte com closet.</p>
+        <p>Dependência completa de empregada no terraço.</p>
+        <p>Sala ampla, cozinha espaçosa com armários planejados e coifa.</p>
+        <p>Banheiro social com blindex, 3 vagas de garagem, piscina e terraço coberto com área gourmet.</p>
+        <p>Possui sistema de energia fotovoltaica. Ambiente com sala, suíte e cozinha projetados por arquitetos.</p>
+        <p>Incluso todos os embutidos,Documentação cristalina.</p>
+        <p><strong>Mais informações pelo whatsapp.</strong></p>
+    </div>
+
+    <div class="property">
+        <h2>Imóvel 20</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel21/foto4.png" alt="Imóvel 20 - Foto 1">
+            <img src="imagens/imagens/imovel21/foto2.png" alt="Imóvel 20 - Foto 1">
+            <img src="imagens/imagens/imovel21/foto3.png" alt="Imóvel 20 - Foto 1">
+            <img src="imagens/imagens/imovel21/foto6.png" alt="Imóvel 20 - Foto 2">
+            <img src="imagens/imagens/imovel21/foto5.png" alt="Imóvel 20 - Foto 3">
+            <img src="imagens/imagens/imovel21/foto1.png" alt="Imóvel 20 - Foto 4">
+        </div>
+        <p><strong>Valor:</strong> R$ 200.000,00</p>
+        <p>Bairro Marechal Deodoro - Duque de Caxias.</p>
+        <p>Flat com 1 quarto, varanda, vaga de garagem e portaria 24hs.</p>
+        <p>Condomínio com infraestrutura de lazer: clube,sauna, piscina, elevadores.</p>
+        <p><strong>Condomínio: R$ 800,00</strong></p>
+        <p><strong>IPTU: R$ 1.100,00 por ano.</strong></p>
+        <p>Próximo a INSS, Caixa, faculdades e estação.</p>
+        <p><strong>Mais informações pelo whatsapp.</strong></p>
+    </div>
+
+    <div class="property">
+        <h2>Imóvel 21</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel9/foto1.png" alt="Imóvel 21 - Foto 1">
+            <img src="imagens/imagens/imovel9/foto2.png" alt="Imóvel 21 - Foto 1">
+            <img src="imagens/imagens/imovel9/foto3.png" alt="Imóvel 21 - Foto 1">
+            <img src="imagens/imagens/imovel9/foto4.png" alt="Imóvel 21 - Foto 2">
+            <img src="imagens/imagens/imovel9/foto5.png" alt="Imóvel 21 - Foto 3">
+            <img src="imagens/imagens/imovel9/foto6.png" alt="Imóvel 21 - Foto 4">
+        </div>
+        <p><strong>Valor:</strong> R$ 480.000,00</p>
+        <p>Rua Barbosa Rodrigues,Duque de Caxias.</p>
+        <p>Imóvel espaçoso e sofisticado, ideal para quem busca conforto e tranquilidade.</p>
+        <p>Ambientes amplos e bem iluminados, com piso laminado e acabamento de qualidade.</p>
+        <p>Cozinha planejada, área de serviço funcional e escadas em granito.</p>
+        <p>Quartos amplos, incluindo um suíte no andar térreo; outros quartos no segundo andar com varanda e vista panorâmica</p>
+        <p>Acabamento moderno com armários planejados, janelas de blindex e ar-condicionado.</p>
+        <p>Situado em rua tranquila, com duas casas no terreno, oferecendo exclusividade e segurança.</p>
+        <p><strong>Mais informações pelo whatsapp.</strong></p>
+    </div>
+
+    <div class="property">
+        <h2>Imóvel 22</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel22/foto1.png" alt="Imóvel 22 - Foto 1">
+            <img src="imagens/imagens/imovel22/foto2.png" alt="Imóvel 22 - Foto 1">
+            <img src="imagens/imagens/imovel22/foto3.png" alt="Imóvel 22 - Foto 1">
+            <img src="imagens/imagens/imovel22/foto4.png" alt="Imóvel 22 - Foto 2">
+            <img src="imagens/imagens/imovel22/foto5.png" alt="Imóvel 22 - Foto 3">
+            <img src="imagens/imagens/imovel22/foto6.png" alt="Imóvel 22 - Foto 4">
+        </div>
+        <p><strong>Valor:</strong> R$ 250.000,00</p>
+        <p>Rua Doutor Manoel Telles .</p>
+        <p>Apartamento de 2 quartos no Condomínio Vitória</p>
+        <p>Com piso laminado e acabamento de qualidade,com sala, cozinha, banheiro com blindex, área de serviço e varanda.</p>
+        <p>Piso porcelanato, teto rebaixado em gesso e iluminação em LED.</p>
+        <p>Condomínio com portaria 24h, lazer completo e áreas comuns revitalizadas.</p>
+        <p><strong>Mais informações pelo whatsapp.</strong></p>
+    </div>
+
+    <div class="property">
+        <h2>Imóvel 23</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel23/foto1.png" alt="Imóvel 23 - Foto 1">
+            <img src="imagens/imagens/imovel23/foto2.png" alt="Imóvel 23 - Foto 4">
+            <img src="imagens/imagens/imovel23/foto3.png" alt="Imóvel 23 - Foto 3">
+            <img src="imagens/imagens/imovel23/foto4.png" alt="Imóvel 23 - Foto 2">
+        </div>
+        <p><strong>Valor:</strong> R$ 990.000,00</p>
+        <p>Prédio de 2 andares na Rua Piauí, nº 30, localizado no Centro de Caxias.</p>
+        <p>Possui duas lojas (70m² e 54m²) no térreo e um amplo apartamento de 135m² com 3 quartos, sala, cozinha, hall, banheiro e área de serviço. </p>
+        <p>Nos fundos, terreno plano de 250m² com árvores frutíferas, ideal para construir ou ampliar.</p>
+        <p><strong>Mais informações pelo whatsapp.</strong></p>
+    </div>
+
+    <div class="property">
+        <h2>Imóvel 24</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel24/foto1.png" alt="Imóvel 24 - Foto 1">
+            <img src="imagens/imagens/imovel24/foto2.png" alt="Imóvel 24 - Foto 2">
+            <img src="imagens/imagens/imovel24/foto3.png" alt="Imóvel 24 - Foto 3">
+            <img src="imagens/imagens/imovel24/foto4.png" alt="Imóvel 24 - Foto 4">
+        </div>
+        <p><strong>Valor:</strong>R$1.150.000,00</p>
+        <p>Rua Barbosa Rodrigues, nº 33, Parque Duque - Duque de Caxias.</p>
+        <p>Casa ampla com 3 quartos, sala com espelho d’água sob a escada, cozinha espaçosa.</p>
+        <p>Quintal com árvores frutíferas (coco, seriguela), garagem para 4 carros e kitnet nos fundos.</p>
+        <p>Obras inacabadas — perfeita para personalizar e transformar no seu lar!</p>
+        <p><strong>Mais informações pelo whatsapp.</strong></p>
+    </div>
+
+    <div class="property">
+        <h2>Imóvel 25</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel25/foto1.jpg" alt="Imóvel 25 - Foto 1">
+            <img src="imagens/imagens/imovel25/foto2.jpg" alt="Imóvel 25 - Foto 2">
+            <img src="imagens/imagens/imovel25/foto3.jpg" alt="Imóvel 25 - Foto 3">
+            <img src="imagens/imagens/imovel25/foto4.jpg" alt="Imóvel 25 - Foto 4">
+        </div>
+        <p><strong>Valor:</strong>R$ 650.000,00</p>
+        <p>Rua General Dionísio, junto à Praça do Humaitá- Duque de Caxias.</p>
+        <p>Amplo apartamento com 4 quartos (1 suíte), sala espaçosa, cozinha e área de serviço arejadas, banheiro social e de serviço.</p>
+        <p>Bem ventilado e iluminado, oferece conforto e praticidade. Localização privilegiada</p>
+        <p><strong>Mais informações pelo whatsapp.</strong></p>
+    </div>
+
+      <div class="property">
+        <h2>Imóvel 26</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel26/foto4.jpg" alt="Imóvel 26 - Foto 1">
+            <img src="imagens/imagens/imovel26/foto3.jpg" alt="Imóvel 26 - Foto 2">
+            <img src="imagens/imagens/imovel26/foto2.jpg" alt="Imóvel 26 - Foto 3">
+            <img src="imagens/imagens/imovel26/foto1.jpg" alt="Imóvel 26 - Foto 4">
+        </div>
+        <p><strong>Valor:</strong>R$10.000.000,00</p>
+        <p>Início da Brigadeiro Lima e Silva, perto da Washington Luiz e da Polícia Técnica de Caxias.</p>
+        <p>Prédio de 5 andares em um Terreno de 360 m².</p>
+        <p>Fachada em pastilha e granito, elevador preparado.</p>
+        <p>Falta acabamento interno. Localização valorizada e estratégica!</p>
+        <p><strong>Mais informações pelo whatsapp.</strong></p>
+    </div>
+
+    <div class="property">
+        <h2>Imóvel 27</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel27/foto1.jpg" alt="Imóvel 27 - Foto 1">
+            <img src="imagens/imagens/imovel27/foto2.jpg" alt="Imóvel 27 - Foto 2">
+            <img src="imagens/imagens/imovel27/foto3.jpg" alt="Imóvel 27 - Foto 3">
+            <img src="imagens/imagens/imovel27/foto4.jpg" alt="Imóvel 27 - Foto 4">
+        </div>
+        <p><strong>Valor:</strong>R$ 2.500.000,00</p>
+        <p>Localizado na esquina da Ampliato Cabral com a Rua General Câmara em Caxias.</p>
+        <p>Galpão 12x30, todo murado, com cobertura e portão de garagem.</p>
+        <p>Atualmente funciona como estacionamento , excelente ponto comercial, ideal para qualquer atividade.</p>
+        <p>Localização valorizada e estratégica!</p>
+        <p><strong>Mais informações pelo whatsapp.</strong></p>
+    </div>
+
+    <div class="property">
+        <h2>Imóvel 28</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel28/foto1.jpg" alt="Imóvel 28 - Foto 1">
+            <img src="imagens/imagens/imovel28/foto2.jpg" alt="Imóvel 28 - Foto 2">
+            <img src="imagens/imagens/imovel28/foto3.jpg" alt="Imóvel 28 - Foto 3">
+            <img src="imagens/imagens/imovel28/foto4.jpg" alt="Imóvel 28 - Foto 4">
+        </div>
+        <p><strong>Valor:</strong>R$ 2.200.000,00</p>
+        <p>Rua Ampliato Cabral com Rua Marcílio Dias, perto do Mário Leone e da Praça da Marçonaria , em Caxias.</p>
+        <p>Casa imponente de esquina, com 7 quartos, 2 salas, 2 banheiros sociais, terraço, jardim com palmeiras.</p>
+        <p>Dependência e garagem para 5 carros.  Ideal pra morar ou investir!</p>
+        <p><strong>Mais informações pelo whatsapp.</strong></p>
+    </div>
+
+      <div class="property">
+        <h2>Imóvel 29</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel29/foto1.jpg" alt="Imóvel 29 - Foto 1">
+            <img src="imagens/imagens/imovel29/foto2.jpg" alt="Imóvel 29 - Foto 2">
+            <img src="imagens/imagens/imovel29/foto3.jpg" alt="Imóvel 29 - Foto 3">
+            <img src="imagens/imagens/imovel29/foto4.jpg" alt="Imóvel 29 - Foto 4">
+        </div>
+        <p><strong>Valor:</strong>R$ 250.000,00</p>
+        <p>Rua Ana Porto, a passos da Nilo Peçanha e da Igreja Universal , no centro de Caxias.</p>
+        <p>São duas casas com 2 quartos cada, podendo virar 4 unidades ou ser unificada. Ideal para morar ou investir.</p>
+        <p>Localização estratégica e com grande potencial!</p>
+        <p><strong>Mais informações pelo whatsapp.</strong></p>
+    </div>
+
+    <div class="property">
+        <h2>Imóvel 30</h2>
+        <div class="image-grid">
+            <img src="imagens/imagens/imovel30/foto1.jpg" alt="Imóvel 30 - Foto 1">
+            <img src="imagens/imagens/imovel30/foto2.jpg" alt="Imóvel 30 - Foto 2">
+            <img src="imagens/imagens/imovel30/foto3.jpg" alt="Imóvel 30 - Foto 3">
+            <img src="imagens/imagens/imovel30/foto4.jpg" alt="Imóvel 30 - Foto 4">
+        </div>
+        <p><strong>Valor:</strong>R$ 380.000,00</p>
+        <p>Terreno plano de 10×40 m na Rua Adélia Lopes, situado no bairro Dr. Laureano, em Caxias.</p>
+        <p>Excelente para imóvel residencial ou comercial, com acesso fácil a transporte, escolas e comércios locais.</p>
+        <p>Oportunidade de investimento com documentação regularizada.</p>
+        <p><strong>Mais informações pelo whatsapp.</strong></p>
+    </div>
+
+    <button class="prev">❮</button>
+    <button class="next">❯</button>
+
 </div>
 
-<style>
-.carousel {
-  position: relative;
-  width: 100%;
-  max-width: 400px; /* largura máxima do carrossel */
-  margin-bottom: 20px;
-  overflow: hidden;
-  border-radius: 5px;
-}
-
-.carousel-images {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-
-.carousel-images img {
-  width: 100%;
-  flex-shrink: 0;
-  border-radius: 5px;
-}
-
-.carousel button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0,0,0,0.3);
-  color: white;
-  border: none;
-  font-size: 24px;
-  padding: 5px 10px;
-  cursor: pointer;
-  border-radius: 3px;
-}
-
-.carousel .prev {
-  left: 5px;
-}
-
-.carousel .next {
-  right: 5px;
-}
-</style>
+<a href="https://api.whatsapp.com/send?phone=SEU_NUMERO" class="whatsapp-button" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="30" height="30">
+</a>
 
 <script>
-document.querySelectorAll('.carousel').forEach(carousel => {
-  const imagesContainer = carousel.querySelector('.carousel-images');
-  const images = imagesContainer.querySelectorAll('img');
-  const prevBtn = carousel.querySelector('.prev');
-  const nextBtn = carousel.querySelector('.next');
-  let index = 0;
+    // JavaScript para controlar os slides
+    let slideIndex = 1;
+    const imoveis = document.querySelectorAll('.property');
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
 
-  function showSlide(i) {
-    if(i < 0) index = images.length - 1;
-    else if(i >= images.length) index = 0;
-    else index = i;
+    function showSlides(n) {
+        if (n > imoveis.length) {
+            slideIndex = 1;
+        }
+        if (n < 1) {
+            slideIndex = imoveis.length;
+        }
+        imoveis.forEach(imovel => imovel.classList.remove('active'));
+        imoveis[slideIndex - 1].classList.add('active');
+    }
 
-    imagesContainer.style.transform = `translateX(${-index * 100}%)`;
-  }
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
 
-  prevBtn.addEventListener('click', () => showSlide(index - 1));
-  nextBtn.addEventListener('click', () => showSlide(index + 1));
+    prevButton.addEventListener('click', () => {
+        plusSlides(-1);
+    });
 
-  showSlide(index);
-});
+    nextButton.addEventListener('click', () => {
+        plusSlides(1);
+    });
+
+    // Mostra o primeiro slide ao carregar a página
+    document.addEventListener('DOMContentLoaded', () => {
+        showSlides(slideIndex);
+    });
 </script>
-
-        <!-- Proteções e configurações -->
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="https://daniele917.github.io/imobiliaria/obrigado.html">
-    </form>
-</div>
-
-<!-- Botão WhatsApp -->
-<a class="whatsapp-button" href="https://wa.me/5521971406156" target="_blank" title="Fale conosco no WhatsApp">
-    💬
-</a>
 
 </body>
 </html>
+
+    
