@@ -73,6 +73,10 @@
     main {
       padding: 20px;
       text-align: center;
+      /* Adicione/Altere estas linhas: */
+      width: 100%; /* Ocupa toda a largura */
+      box-sizing: border-box; /* Evita que o padding cause barra de rolagem horizontal */
+      background-color: #fff; /* Garante que o fundo da área de conteúdo seja branco de ponta a ponta */
     }
 
     footer {
@@ -102,9 +106,12 @@
     }
 
     .carousel-container {
-      margin: 20px auto;
-      width: 90%;
-      max-width: 800px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    /* Altere a largura de 80% para um valor maior (ex: 95%) */
+      width: 95%; 
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .carousel img {
