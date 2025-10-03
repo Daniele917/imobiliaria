@@ -17,8 +17,8 @@
 
   <style>
     body {
-        margin: 0;
-        padding: 0;
+        margin: 0 !important; /* GARANTE TELA CHEIA */
+        padding: 0 !important;
         font-family: Arial, sans-serif;
         background-color: #f2f2f2;
         color: #333;
@@ -29,35 +29,32 @@
         color: #fff;
         padding: 14px;
         text-align: center;
-        /* ADICIONADO: Garante que o cabeçalho ocupe 100% */
-        width: 100%;
+        width: 100% !important; /* FORÇA 100% */
         box-sizing: border-box;
     }
 
     .titulo {
-        font-size: 25px; /* diminuída */
+        font-size: 25px;
     }
 
     .subtitulo {
-        font-size: 20px; /* diminuída */
+        font-size: 20px;
     }
 
     .creci {
-        font-size: 15px; /* ajuste conforme desejado */
+        font-size: 15px;
     }
-  
-    /* CORREÇÃO PRINCIPAL: Removido max-width, pois estava limitando o conteúdo. */
+    
+    /* CORREÇÃO PRINCIPAL: Remove limite de largura e centralização forçada */
     .container {
-        /* max-width: 800px; <--- REMOVIDO OU COMENTADO */
-        /* width: 100%; <--- ADICIONADO PARA OCUPAR TUDO */
-        width: 100%; 
-        margin: 20px auto;
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
         padding: 20px;
         background-color: #fff;
         border-radius: 10px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        /* ADICIONADO: Garante que padding não cause barra de rolagem horizontal */
-        box-sizing: border-box; 
+        box-sizing: border-box;
     }
 
     nav ul {
@@ -78,9 +75,9 @@
     main {
         padding: 20px;
         text-align: center;
-        /* ADICIONADO: Garante que o main ocupe 100% e cubra o fundo cinza */
-        width: 100%;
-        background-color: #fff;
+        /* FORÇA 100% DE LARGURA E COBRE O FUNDO CINZA */
+        width: 100% !important;
+        background-color: #fff !important; 
         box-sizing: border-box;
     }
 
@@ -89,8 +86,7 @@
         color: #fff;
         padding: 20px;
         text-align: center;
-        /* ADICIONADO: Garante que o footer ocupe 100% */
-        width: 100%;
+        width: 100% !important;
         box-sizing: border-box;
     }
 
@@ -121,10 +117,10 @@
     .carousel-container {
         margin-top: 20px;
         margin-bottom: 20px;
-        /* ALTERADO: Aumenta de 80% para 95% para usar mais espaço na tela */
-        width: 95%; 
-        margin-left: auto;
-        margin-right: auto;
+        /* Aumentado para usar mais espaço */
+        width: 95% !important; 
+        margin-left: auto !important;
+        margin-right: auto !important;
     }
 
     .carousel img {
@@ -152,7 +148,9 @@
     .centered-text {
         margin-top: 30px;
         font-weight: bold;
-      }
+    }
+    
+        
   </style>
 </head>
 
