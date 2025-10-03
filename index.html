@@ -17,6 +17,14 @@
     <link rel="stylesheet" href="imob.css">
 
     <style>
+
+        html, body {
+           width: 100%;
+           height: 100%;
+           margin: 0;
+           padding: 0;
+        }
+        
         body {
             margin: 0; /* Remove a margem externa da página */
             padding: 0; /* Remove o espaço interno */
@@ -45,6 +53,7 @@
         }
       
         .container {
+            min-height: 100vh; /* ocupa pelo menos a altura inteira da tela */
             max-width: 800px; /* Largura máxima do conteúdo */
             margin: 20px auto; /* Centraliza o bloco */
             padding: 20px; /* Espaçamento interno */
