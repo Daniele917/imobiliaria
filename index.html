@@ -1,211 +1,215 @@
+
 <!DOCTYPE html>
+
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Site de Vendas de Imóveis</title>
 
-    <!-- Slick Carousel CSS -->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+```
+<!-- Slick Carousel CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-    
-    <style>
+<link rel="stylesheet" href="imob.css">
 
-        html, body {
-           width: 100%;
-           height: 100%;
-           margin: 0;
-           padding: 0;
-        }
-        
-        body {
-            margin: 0; /* Remove a margem externa da página */
-            padding: 0; /* Remove o espaço interno */
-            font-family: Arial, sans-serif; /* Define a fonte do site */
-            background-color: #f2f2f2; /* Cor de fundo da página */
-            color: #333; /* Cor padrão do texto */
-        }
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        color: #333;
+    }
 
-        header {
-            background-color: #333; /* Fundo escuro no cabeçalho */
-            color: #fff; /* Texto branco no cabeçalho */
-            padding: 14px; /* Espaçamento interno */
-            text-align: center; /* Centraliza o texto */
-        }
+    header {
+        background-color: #333;
+        color: #fff;
+        padding: 14px;
+        text-align: center;
+    }
 
-        .titulo {
-            font-size: 25px; /* Define tamanho da fonte do título */
-        }
+    .titulo {
+        font-size: 25px;
+    }
 
-        .subtitulo {
-            font-size: 20px; /* Define tamanho da fonte do subtítulo */
-        }
+    .subtitulo {
+        font-size: 20px;
+    }
 
-        .creci {
-            font-size: 15px; /* Texto menor para informações como CRECI */
-        }
-      
-        .container {
-            min-height: 100vh; /* ocupa pelo menos a altura inteira da tela */
-            max-width: 800px; /* Largura máxima do conteúdo */
-            margin: 20px auto; /* Centraliza o bloco */
-            padding: 20px; /* Espaçamento interno */
-            background-color: #fff; /* Fundo branco */
-            border-radius: 10px; /* Cantos arredondados */
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
-        }
+    .creci {
+        font-size: 15px;
+    }
 
-        nav ul {
-            list-style-type: none; /* Remove os pontos da lista */
-            padding: 0; /* Remove espaço interno */
-        }
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
 
-        nav ul li {
-            display: inline; /* Deixa os itens em linha */
-            margin-right: 20px; /* Espaço entre eles */
-        }
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+    }
 
-        nav ul li a {
-            color: #fff; /* Links brancos no menu */
-            text-decoration: none; /* Remove sublinhado */
-        }
+    nav ul li {
+        display: inline;
+        margin-right: 20px;
+    }
 
-        main {
-            padding: 20px; /* Espaçamento do conteúdo principal */
-            text-align: center; /* Centraliza o texto */
-        }
+    nav ul li a {
+        color: #fff;
+        text-decoration: none;
+    }
 
-        footer {
-            background-color: #333; /* Fundo escuro no rodapé */
-            color: #fff; /* Texto branco */
-            padding: 20px; /* Espaçamento interno */
-            text-align: center; /* Centraliza o texto */
-        }
+    main {
+        padding: 20px;
+        text-align: center;
+    }
 
-        .whatsapp-link {
-            position: fixed; /* Fixa o botão na tela */
-            width: 60px; /* Largura */
-            height: 60px; /* Altura */
-            bottom: 40px; /* Distância do rodapé */
-            right: 40px; /* Distância da lateral direita */
-            background-color: #25d366; /* Cor verde do WhatsApp */
-            color: #fff; /* Ícone branco */
-            border-radius: 50px; /* Deixa redondo */
-            text-align: center; /* Centraliza o ícone */
-            font-size: 30px; /* Tamanho do ícone */
-            box-shadow: 1px 1px 2px #888; /* Sombra */
-            z-index: 1000; /* Fica por cima dos outros elementos */
-            display: flex; /* Flexbox para centralizar */
-            flex-direction: column; 
-            align-items: center;
-            justify-content: center;
-            text-decoration: none; /* Remove sublinhado */
-        }
+    footer {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
 
-        .fab.fa-whatsapp {
-            margin-top: 5px; /* Ajusta posição do ícone */
-        }
+    .whatsapp-link {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        bottom: 40px;
+        right: 40px;
+        background-color: #25d366;
+        color: #fff;
+        border-radius: 50px;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 1px 1px 2px #888;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+    }
 
-        .carousel-container {
-            margin-top: 20px; /* Espaço acima */
-            margin-bottom: 20px; /* Espaço abaixo */
-            width: 80%; /* Largura do carrossel */
-            margin-left: auto; /* Centraliza horizontalmente */
-            margin-right: auto;
-        }
+    .fab.fa-whatsapp {
+        margin-top: 5px;
+    }
 
-        .carousel img {
-            width: 100%; /* Imagens ocupam toda a largura */
-        }
+    .carousel-container {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-        .button-link {
-            display: inline-block; /* Botão em bloco na linha */
-            padding: 5px 15px; /* Espaçamento interno */
-            background-color: #000; /* Fundo preto */
-            color: #fff; /* Texto branco */
-            text-decoration: none; /* Remove sublinhado */
-            border-radius: 5px; /* Bordas arredondadas */
-            transition: background-color 0.3s ease; /* Efeito suave ao passar o mouse */
-        }
+    .carousel img {
+        width: 100%;
+    }
 
-        .button-link:hover {
-            background-color: #333; /* Fica mais claro ao passar o mouse */
-        }
+    .button-link {
+        display: inline-block;
+        padding: 5px 15px;
+        background-color: #000;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
 
-        .link-container {
-            margin-top: 20px; /* Espaço acima do link */
-        }
+    .button-link:hover {
+        background-color: #333;
+    }
 
-        .centered-text {
-            margin-top: 30px; /* Espaço acima */
-            font-weight: bold; /* Deixa o texto em negrito */
-        }
-    </style>
-    
+    .link-container {
+        margin-top: 20px;
+    }
 
-    
+    .centered-text {
+        margin-top: 30px;
+        font-weight: bold;
+    }
+</style>
+```
+
 </head>
 
 <body>
-    <a class="whatsapp-link" href="https://wa.me/5521965202500" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
 
-    <header>
-        <h1 class="titulo">Corretor Imobiliário</h1>
-        <h2 class="subtitulo">Julio Barbosa</h2>
-        <h2 class="creci"><strong>CRECI-RJ 102.807</strong></h2>
-      
-        <nav>
-            <ul>
-                <!-- HOME REMOVIDO DA NAV -->
-                <li><a href="avulsos.html" class="button-link">Avulsos</a></li>
-                <li><a href="contato.html" class="button-link">Contato</a></li>
-                <li><a href="sobrenos.html" class="button-link">Sobre Nós</a></li>
-            </ul>
-        </nav>
-    </header>
+```
+<!-- Botão do WhatsApp com mensagem de recepção -->
+<a class="whatsapp-link"
+   href="https://wa.me/5521971406156?text=Ol%C3%A1%21%20%F0%9F%91%8B%20Obrigado%20por%20entrar%20em%20contato%20com%20a%20equipe%20do%20corretor%20Julio%20Barbosa.%20Podemos%20te%20mostrar%20os%20melhores%20im%C3%B3veis%20dispon%C3%ADveis%20na%20sua%20regi%C3%A3o.%20Queremos%20te%20ajudar%20a%20encontrar%20o%20im%C3%B3vel%20perfeito%21"
+   target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
 
-    <main>
-        <div class="carousel-container">
-            <div class="carousel">
-                <div><img src="images/imagens/imagens/index/foto1.webp" alt="Imagem 1"></div>
-                <div><img src="images/imagens/imagens/index/foto2.webp" alt="Imagem 2"></div>
-                <div><img src="images/imagens/imagens/index/foto3.webp" alt="Imagem 3"></div>
-            </div>
+<header>
+    <h1 class="titulo">Corretor Imobiliário</h1>
+    <h2 class="subtitulo">Julio Barbosa</h2>
+    <h2 class="creci"><strong>CRECI-RJ 102.807</strong></h2>
+
+    <nav>
+        <ul>
+            <li><a href="avulsos.html" class="button-link">Avulsos</a></li>
+            <li><a href="contato.html" class="button-link">Contato</a></li>
+            <li><a href="sobrenos.html" class="button-link">Sobre Nós</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <div class="carousel-container">
+        <div class="carousel">
+            <div><img src="imagens/imagens/index/foto1.jpg" alt="Imagem 1"></div>
+            <div><img src="imagens/imagens/index/foto2.webp" alt="Imagem 2"></div>
+            <div><img src="imagens/imagens/index/foto3.webp" alt="Imagem 3"></div>
         </div>
+    </div>
 
-        <div class="link-container">
-            <a href="index.html" class="button-link">Voltar</a>
-            <a href="avulsos.html" class="button-link">Avançar</a>
-        </div>
+    <div class="link-container">
+        <a href="index.html" class="button-link">Voltar</a>
+        <a href="avulsos.html" class="button-link">Avançar</a>
+    </div>
 
-        <p class="centered-text">Tudo Posso Naquele Que Me Fortalece.</p>
-    </main>
+    <p class="centered-text">Tudo Posso Naquele Que Me Fortalece.</p>
+</main>
 
-    <footer>
-        <nav>
-            <ul>
-                <li><a href="https://www.facebook.com/imoveisemercadoimobiliario?mibextid=ZbWKwL" class="button-link">Facebook</a></li>
-                <li><a href="https://www.instagram.com/juliobarbosabroker?igsh=MWFjdml1NG04d3ZubQ==" class="button-link">Instagram</a></li>
-            </ul>
-        </nav>
-    </footer>
+<footer>
+    <nav>
+        <ul>
+            <li><a href="https://www.facebook.com/imoveisemercadoimobiliario?mibextid=ZbWKwL" class="button-link">Facebook</a></li>
+            <li><a href="https://www.instagram.com/juliobarbosabroker?igsh=MWFjdml1NG04d3ZubQ==" class="button-link">Instagram</a></li>
+        </ul>
+    </nav>
+</footer>
 
-    <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $('.carousel').slick({
-                autoplay: true,
-                autoplaySpeed: 2000
-            });
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $('.carousel').slick({
+            autoplay: true,
+            autoplaySpeed: 2000
         });
-    </script>
+    });
+</script>
+```
+
 </body>
-</html>  
+</html>
+
+ 
