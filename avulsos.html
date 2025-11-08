@@ -1147,9 +1147,71 @@
     document.addEventListener('keydown', function(e) {
         if (e.key === "Escape" && modal.style.display === "block") {
             fecharZoom();
-        }
+    <!-- Ícone do botão de compartilhar -->
+<style>
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background-color: #25D366; /* cor do WhatsApp */
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+  transition: background-color 0.2s;
+}
+.share-btn:hover {
+  background-color: #1DA851;
+}
+.share-btn svg {
+  width: 18px;
+  height: 18px;
+}
+</style>
+
+<!-- Script para adicionar o botão em todos os imóveis -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const properties = document.querySelectorAll(".property");
+  
+  properties.forEach((property) => {
+    // Pega o título do imóvel
+    const title = property.querySelector("h2")?.textContent || "Imóvel";
+    const text = `Confira este ${title}!`;
+    const url = window.location.href; // link atual do site
+
+    // Cria botão com ícone de compartilhar
+    const button = document.createElement("button");
+    button.className = "share-btn";
+    button.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M13.5 1a1.5 1.5 0 0 1 1.415 1.001 1.5 1.5 0 0 1-.32 1.637L9.707 8.526a.5.5 0 0 0-.146.353v3.121a.5.5 0 0 0 .724.447l2.52-1.26a.5.5 0 0 1 .724.447v2.366a.5.5 0 0 1-.724.447l-4-2a.5.5 0 0 1-.276-.447v-4a.5.5 0 0 1 .146-.353l5.386-4.888A.5.5 0 0 0 13.5 1z"/>
+      </svg>
+      Compartilhar
+    `;
+
+    // Ação de compartilhamento
+    button.onclick = async () => {
+  if (navigator.share) {
+    await navigator.share({
+      title: title,
+      text: text,
+      url: url
     });
+  } else {
+    alert("O compartilhamento não é suportado neste navegador.");
+  }
+};
+
+// Adiciona o botão no final de cada imóvel
+property.appendChild(button);
+});
+});
 </script>
 
 </body>
 </html>
+
