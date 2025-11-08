@@ -1051,7 +1051,10 @@
 </div>
 
 <a class="whatsapp-button" href="https://wa.me/5521971406156?text=Ol%C3%A1%20%E2%98%BA%2C%20vim%20atrav%C3%A9s%20do%20site%20imobili%C3%A1rio." target="_blank" title="Fale conosco no WhatsApp">
-    </a>
+    <svg viewBox="0 0 24 24" width="24" height="24">
+        <path d="M12.031 3.001c-4.939 0-8.95 4.011-8.95 8.95 0 1.637.452 3.235 1.282 4.65l-1.35 4.93 5.05-1.32c1.378.79 2.946 1.22 4.544 1.22 4.939 0 8.95-4.011 8.95-8.95 0-4.939-4.011-8.95-8.95-8.95zm4.84 13.92c-.17.478-.654.67-.93.702-.27.032-.614.05-.884-.04-.27-.086-1.552-.58-1.83-.68-.278-.1-.476-.145-.67.143-.19.29-.738.93-.9.988-.16.058-.33.086-.605.086-.275 0-.547-.07-.75-.194-.203-.122-1.09-1.066-1.306-1.53-.217-.463-.23-1.018-.088-1.284.14-.265.372-.424.5-.53.125-.107.25-.26.335-.43.086-.17.042-.32-.016-.452-.057-.13-.505-1.21-.693-1.65-.187-.44-.377-.376-.505-.38-.127-.006-.272-.008-.415-.008-.142 0-.374.053-.57.26-.196.205-.74.72-.74 1.764 0 1.043.76 2.046.874 2.19.115.145 1.512 2.3 3.65 3.197 2.138.89 2.138.583 2.518.552.38-.03 1.23-.504 1.403-.984.173-.48.173-.89.12-1.02-.054-.13-.195-.205-.365-.29z"/>
+    </svg>
+</a>
 
 <div id="zoom-modal" class="modal" onclick="fecharZoom(event)">
     <span class="close-button" onclick="fecharZoom(event)">&times;</span>
@@ -1064,7 +1067,7 @@
     align-items: center;
     gap: 6px;
     padding: 8px 12px;
-    background-color: #25D366; /* cor do WhatsApp */
+    background-color: #25D366; /* Cor do WhatsApp */
     color: white;
     border: none;
     border-radius: 20px;
@@ -1072,6 +1075,7 @@
     font-size: 14px;
     margin-top: 10px;
     transition: background-color 0.2s;
+    text-decoration: none; /* Garante que não haja sublinhado se for link/âncora */
 }
 .share-btn:hover {
     background-color: #1DA851;
@@ -1079,7 +1083,34 @@
 .share-btn svg {
     width: 18px;
     height: 18px;
+    fill: white; /* Garante que o ícone seja branco */
 }
+
+/* Estilo para o Botão Flutuante do WhatsApp */
+.whatsapp-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    width: 55px;
+    height: 55px;
+    background-color: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: background-color 0.3s;
+}
+.whatsapp-button:hover {
+    background-color: #1DA851;
+}
+.whatsapp-button svg {
+    fill: white;
+    width: 30px;
+    height: 30px;
+}
+
 </style>
 
 <script>
@@ -1118,11 +1149,72 @@
         }
     }
    
-    // Inicializa o estado e a exibição do primeiro imóvel
     document.addEventListener('DOMContentLoaded', () => {
-        showSlides(slideIndex);
-        resetAllCarousels();
+   
+    // 1. INICIALIZAÇÃO DA GALERIA (Original do seu código)
+    // Se você estiver listando todos os imóveis (e não um por vez), mantenha apenas o resetAllCarousels();
+    // Se você usa navegação entre imóveis com showSlides(slideIndex); , mantenha-o.
+    // showSlides(slideIndex);
+    resetAllCarousels();
+
+    // 2. CRIAÇÃO DOS BOTÕES DE COMPARTILHAMENTO E WHATSAPP
+    const properties = document.querySelectorAll(".propriedade");
+   
+    properties.forEach((propriedade) => {
+        const titulo = propriedade.querySelector("h2")?.textContent || "Imóvel sem Título";
+        const valorElement = propriedade.querySelector("p strong");
+        const valor = valorElement ? valorElement.nextSibling.textContent.trim() : "Valor indisponível";
+       
+        // Informações e URLs para o WhatsApp
+        const rawText = `Olá! Tenho interesse no imóvel: ${titulo} (${valor}). Link: ${window.location.href}`;
+        const encodedText = encodeURIComponent(rawText);
+        const numeroWhatsapp = "5521971406156";
+        const whatsappLink = `https://wa.me/${numeroWhatsapp}?text=${encodedText}`;
+
+        // CRIAÇÃO DO BOTÃO "FALE NO WHATSAPP" (Principal)
+        const whatsappButton = document.createElement("a");
+        whatsappButton.href = whatsappLink;
+        whatsappButton.target = "_blank";
+        whatsappButton.className = "share-btn whatsapp-share-btn";
+       
+        whatsappButton.innerHTML = `
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.031 3.001c-4.939 0-8.95 4.011-8.95 8.95 0 1.637.452 3.235 1.282 4.65l-1.35 4.93 5.05-1.32c1.378.79 2.946 1.22 4.544 1.22 4.939 0 8.95-4.011 8.95-8.95 0-4.939-4.011-8.95-8.95-8.95zm4.84 13.92c-.17.478-.654.67-.93.702-.27.032-.614.05-.884-.04-.27-.086-1.552-.58-1.83-.68-.278-.1-.476-.145-.67.143-.19.29-.738.93-.9.988-.16.058-.33.086-.605.086-.275 0-.547-.07-.75-.194-.203-.122-1.09-1.066-1.306-1.53-.217-.463-.23-1.018-.088-1.284.14-.265.372-.424.5-.53.125-.107.25-.26.335-.43.086-.17.042-.32-.016-.452-.057-.13-.505-1.21-.693-1.65-.187-.44-.377-.376-.505-.38-.127-.006-.272-.008-.415-.008-.142 0-.374.053-.57.26-.196.205-.74.72-.74 1.764 0 1.043.76 2.046.874 2.19.115.145 1.512 2.3 3.65 3.197 2.138.89 2.138.583 2.518.552.38-.03 1.23-.504 1.403-.984.173-.48.173-.89.12-1.02-.054-.13-.195-.205-.365-.29z"/>
+            </svg>
+            Fale no WhatsApp
+        `;
+
+        propriedade.appendChild(whatsappButton);
+       
+        // CRIAÇÃO DO BOTÃO "COMPARTILHAR" (Secundário, se o celular suportar)
+        if (navigator.share) {
+             const genericButton = document.createElement("button");
+             genericButton.className = "share-btn generic-share-btn";
+             
+             genericButton.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.506l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.012l6.718-3.12A2.499 2.499 0 0 1 11 2.5zm-5 6a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
+                </svg>
+                Compartilhar
+            `;
+           
+            const shareText = `Confira este imóvel: ${titulo} (${valor}). Link: ${window.location.href}`;
+            genericButton.onclick = async () => {
+                 await navigator.share({
+                    title: titulo,
+                    text: shareText,
+                    url: window.location.href
+                }).catch(() => {
+                    navigator.clipboard.writeText(shareText);
+                    alert("Link copiado para a área de transferência!");
+                });
+            };
+           
+            propriedade.appendChild(genericButton);
+        }
     });
+});
+                
 
 
     function moveCarousel(n, imovelID) {
