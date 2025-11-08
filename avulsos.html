@@ -288,21 +288,27 @@
         /* 1. O contêiner pai deve ser 'relative' */
         .property {
             position: relative; 
-     /* Garante que o botão flutue DENTRO do box do imóvel */
+    /* Altura definida é importante para o absolute funcionar. */
+    /* Se a altura já estiver definida por outros estilos, você pode omitir as linhas abaixo. */
+    /* Caso contrário, use: */
+    /* height: 100%; */
+    /* min-height: 300px; /* Exemplo de altura mínima */
+            overflow: hidden; /* Ajuda a conter o botão */
         }
+        
 
 /* 2. O botão de compartilhamento deve ser 'absolute' */
         .botao-compartilhar {
-        position: absolute;
-        top: 20px; 
-        right: 20px; 
-        background: none;
-        border: none;
-        color: #e30000; /* Cor Vermelha/Laranja (ajuste se quiser outra cor) */
-        font-size: 20px;
-        cursor: pointer;
-        z-index: 10; /* Garante que fique por cima de fotos ou texto */
-        padding: 5px;
+            position: absolute;
+            top: 20px; 
+            right: 20px; 
+            background: none;
+            border: none;
+            color: #000000; /* Cor Vermelha/Laranja (ajuste se quiser outra cor) */
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10; /* Garante que fique por cima de fotos ou texto */
+            padding: 5px;
         }
         
     </style>
