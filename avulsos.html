@@ -144,6 +144,7 @@
             color: #bbb;
             text-decoration: none;
         }
+        
 
        
 
@@ -266,6 +267,42 @@
         .contact-section button:hover {
             background-color: #0056b3;
         }
+        .property {
+            position: relative; 
+    /* Outros estilos de propriedade que você já tem */
+        }
+        .botao-compartilhar {
+            position: absolute;
+            top: 20px; /* Distância do topo do contêiner do imóvel */
+            right: 20px; /* Distância da lateral direita */
+            background: none;
+            border: none;
+            color: #e30000; /* Cor Vermelha/Laranja (ajuste a cor que preferir) */
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10; 
+            padding: 5px;
+        }
+        /* 1. O contêiner pai deve ser 'relative' */
+        .property {
+            position: relative; 
+     /* Garante que o botão flutue DENTRO do box do imóvel */
+        }
+
+/* 2. O botão de compartilhamento deve ser 'absolute' */
+        .botao-compartilhar {
+        position: absolute;
+        top: 20px; 
+        right: 20px; 
+        background: none;
+        border: none;
+        color: #e30000; /* Cor Vermelha/Laranja (ajuste se quiser outra cor) */
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 10; /* Garante que fique por cima de fotos ou texto */
+        padding: 5px;
+        }
+        
     </style>
 </head>
 <body id="topo">
@@ -1261,7 +1298,44 @@
         }
     });
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Seleciona TODOS os botões que têm a classe 'botao-compartilhar'
+        const botoesCompartilhar = document.querySelectorAll('.botao-compartilhar');
 
+        botoesCompartilhar.forEach(botao => {
+            botao.addEventListener('click', () => {
+                
+                // Encontra o título do imóvel para o compartilhamento
+                const propertyContainer = botao.closest('.property');
+                const titleElement = propertyContainer ? propertyContainer.querySelector('h2') : null;
+                const title = titleElement ? titleElement.textContent : 'Confira este Imóvel!';
+                
+                // Pega a URL da página atual
+                const url = window.location.href; 
+                
+                const dadosCompartilhar = {
+                    title: title,
+                    text: `${title} - Veja mais detalhes agora!`,
+                    url: url
+                };
+
+                // Lógica de Compartilhamento Nativo (para Celulares)
+                if (navigator.share) {
+                    navigator.share(dadosCompartilhar).catch(error => console.log('Compartilhamento cancelado ou erro:', error));
+                } else {
+                    // Alternativa (para Desktops): Copiar o link
+                    navigator.clipboard.writeText(dadosCompartilhar.url).then(() => {
+                        alert('Link do imóvel copiado para a área de transferência!');
+                    }).catch(err => {
+                        console.error('Não foi possível copiar o link: ', err);
+                    });
+                }
+            });
+        });
+    });
+</script>
+    
 </body>
 </html>
 
