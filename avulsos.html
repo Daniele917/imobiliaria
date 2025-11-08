@@ -1051,15 +1051,36 @@
 </div>
 
 <a class="whatsapp-button" href="https://wa.me/5521971406156?text=Ol%C3%A1%20%E2%98%BA%2C%20vim%20atrav%C3%A9s%20do%20site%20imobili%C3%A1rio." target="_blank" title="Fale conosco no WhatsApp">
-    💬
-</a>
-
-
+    </a>
 
 <div id="zoom-modal" class="modal" onclick="fecharZoom(event)">
     <span class="close-button" onclick="fecharZoom(event)">&times;</span>
     <img class="modal-content" id="img-zoom">
 </div>
+
+<style>
+.share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background-color: #25D366; /* cor do WhatsApp */
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+    transition: background-color 0.2s;
+}
+.share-btn:hover {
+    background-color: #1DA851;
+}
+.share-btn svg {
+    width: 18px;
+    height: 18px;
+}
+</style>
 
 <script>
     // --- Lógica da Galeria Principal (Troca de Imóveis) ---
@@ -1077,14 +1098,14 @@
             properties[i].classList.remove('active'); // Esconde todos
         }
         properties[slideIndex - 1].classList.add('active'); // Mostra o atual
-        
+       
         // IMPORTANTE: Ao trocar o imóvel, reseta o carrossel interno para o primeiro slide
         resetAllCarousels();
         moveCarousel(0, slideIndex);
     }
 
     // --- Lógica dos Carrosseis Internos (Fotos do Imóvel) ---
-    const carouselIndices = {}; 
+    const carouselIndices = {};
 
     function resetAllCarousels() {
         for (let j = 1; j <= properties.length; j++) {
@@ -1092,11 +1113,11 @@
             const track = document.querySelector(`.carousel-track[data-imovel="${j}"]`);
             if(track) {
                 // Garante que o track está na posição inicial (slide 0)
-                track.style.transform = `translateX(0%)`; 
+                track.style.transform = `translateX(0%)`;
             }
         }
     }
-    
+   
     // Inicializa o estado e a exibição do primeiro imóvel
     document.addEventListener('DOMContentLoaded', () => {
         showSlides(slideIndex);
@@ -1107,9 +1128,9 @@
     function moveCarousel(n, imovelID) {
         const track = document.querySelector(`.carousel-track[data-imovel="${imovelID}"]`);
         if (!track) return;
-        
+       
         const slides = track.querySelectorAll('.carousel-slide');
-        
+       
         // Atualiza o índice do carrossel específico
         let newIndex = (carouselIndices[imovelID] || 0) + n;
 
@@ -1122,7 +1143,7 @@
         }
 
         carouselIndices[imovelID] = newIndex; // Salva o novo índice
-        
+       
         // Aplica a translação (o movimento do carrossel)
         track.style.transform = `translateX(${-newIndex * 100}%)`;
     }
@@ -1147,71 +1168,49 @@
     document.addEventListener('keydown', function(e) {
         if (e.key === "Escape" && modal.style.display === "block") {
             fecharZoom();
-    <!-- Ícone do botão de compartilhar -->
-<style>
-.share-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 12px;
-  background-color: #25D366; /* cor do WhatsApp */
-  color: white;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 14px;
-  margin-top: 10px;
-  transition: background-color 0.2s;
-}
-.share-btn:hover {
-  background-color: #1DA851;
-}
-.share-btn svg {
-  width: 18px;
-  height: 18px;
-}
-</style>
-
-<!-- Script para adicionar o botão em todos os imóveis -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const properties = document.querySelectorAll(".property");
-  
-  properties.forEach((property) => {
-    // Pega o título do imóvel
-    const title = property.querySelector("h2")?.textContent || "Imóvel";
-    const text = `Confira este ${title}!`;
-    const url = window.location.href; // link atual do site
-
-    // Cria botão com ícone de compartilhar
-    const button = document.createElement("button");
-    button.className = "share-btn";
-    button.innerHTML = `
-      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
-        <path d="M13.5 1a1.5 1.5 0 0 1 1.415 1.001 1.5 1.5 0 0 1-.32 1.637L9.707 8.526a.5.5 0 0 0-.146.353v3.121a.5.5 0 0 0 .724.447l2.52-1.26a.5.5 0 0 1 .724.447v2.366a.5.5 0 0 1-.724.447l-4-2a.5.5 0 0 1-.276-.447v-4a.5.5 0 0 1 .146-.353l5.386-4.888A.5.5 0 0 0 13.5 1z"/>
-      </svg>
-      Compartilhar
-    `;
-
-    // Ação de compartilhamento
-    button.onclick = async () => {
-  if (navigator.share) {
-    await navigator.share({
-      title: title,
-      text: text,
-      url: url
+        }
     });
-  } else {
-    alert("O compartilhamento não é suportado neste navegador.");
-  }
-};
+   
+    // --- Lógica de Compartilhamento (Adiciona o botão em cada imóvel) ---
+    document.addEventListener("DOMContentLoaded", () => {
+        const properties = document.querySelectorAll(".property");
+       
+        properties.forEach((property) => {
+            // Pega o título do imóvel
+            const title = property.querySelector("h2")?.textContent || "Imóvel";
+            const text = `Confira este ${title}!`;
+            const url = window.location.href; // link atual do site
 
-// Adiciona o botão no final de cada imóvel
-property.appendChild(button);
-});
-});
+            // Cria botão com ícone de compartilhar
+            const button = document.createElement("button");
+            button.className = "share-btn";
+            button.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M13.5 1a1.5 1.5 0 0 1 1.415 1.001 1.5 1.5 0 0 1-.32 1.637L9.707 8.526a.5.5 0 0 0-.146.353v3.121a.5.5 0 0 0 .724.447l2.52-1.26a.5.5 0 0 1 .724.447v2.366a.5.5 0 0 1-.724.447l-4-2a.5.5 0 0 1-.276-.447v-4a.5.5 0 0 1 .146-.353l5.386-4.888A.5.5 0 0 0 13.5 1z"/>
+                </svg>
+                Compartilhar
+            `;
+
+            // Ação de compartilhamento
+            button.onclick = async () => {
+                if (navigator.share) {
+                    await navigator.share({
+                        title: title,
+                        text: text,
+                        url: url
+                    });
+                } else {
+                    alert("O compartilhamento não é suportado neste navegador.");
+                }
+            };
+
+            // Adiciona o botão no final de cada imóvel (assumindo que existe a classe .property)
+            property.appendChild(button);
+        });
+    });
 </script>
 
 </body>
 </html>
 
+              
