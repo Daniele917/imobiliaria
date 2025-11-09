@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -6,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Imóveis Disponíveis</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    
+   
     <style>
         /* Estilos Globais */
         body {
@@ -146,7 +145,7 @@
             color: #bbb;
             text-decoration: none;
         }
-        
+       
 
        
 
@@ -270,7 +269,7 @@
             background-color: #0056b3;
         }
         .property {
-            position: relative; 
+            position: relative;
     /* Outros estilos de propriedade que você já tem */
         }
         .botao-compartilhar {
@@ -282,12 +281,12 @@
             color: #e30000; /* Cor Vermelha/Laranja (ajuste a cor que preferir) */
             font-size: 20px;
             cursor: pointer;
-            z-index: 10; 
+            z-index: 10;
             padding: 5px;
         }
         /* 1. O contêiner pai deve ser 'relative' */
         .property {
-            position: relative; 
+            position: relative;
     /* Altura definida é importante para o absolute funcionar. */
     /* Se a altura já estiver definida por outros estilos, você pode omitir as linhas abaixo. */
     /* Caso contrário, use: */
@@ -295,13 +294,13 @@
     /* min-height: 300px; /* Exemplo de altura mínima */
             overflow: hidden; /* Ajuda a conter o botão */
         }
-        
+       
 
 /* 2. O botão de compartilhamento deve ser 'absolute' */
         .botao-compartilhar {
             position: absolute;
-            top: 20px; 
-            right: 20px; 
+            top: 20px;
+            right: 20px;
             background: none;
             border: none;
             color: #000000; /* Cor Vermelha/Laranja (ajuste se quiser outra cor) */
@@ -310,7 +309,7 @@
             z-index: 10; /* Garante que fique por cima de fotos ou texto */
             padding: 5px;
         }
-        
+       
     </style>
 </head>
 <body id="topo">
@@ -481,8 +480,8 @@
          </button>
          <h2>Imóvel 8</h2>
          <div class="carousel-container">
-            <div class="carousel-track" data-imovel="8">
-                <div class="carousel-slide"><img src="imagens/imagens/imovel8/foto1.png" alt="Imóvel 8 - Foto 1" onclick="abrirZoom(this)"></div>
+         <div class="carousel-track" data-imovel="8">
+             <div class="carousel-slide"><img src="imagens/imagens/imovel8/foto1.png" alt="Imóvel 8 - Foto 1" onclick="abrirZoom(this)"></div>
                 <div class="carousel-slide"><img src="imagens/imagens/imovel8/foto2.png" alt="Imóvel 8 - Foto 2" onclick="abrirZoom(this)"></div>
                 <div class="carousel-slide"><img src="imagens/imagens/imovel8/foto3.png" alt="Imóvel 8 - Foto 3" onclick="abrirZoom(this)"></div>
                 <div class="carousel-slide"><img src="imagens/imagens/imovel8/foto5.png" alt="Imóvel 8 - Foto 4" onclick="abrirZoom(this)"></div>
@@ -853,7 +852,7 @@
         <p>Condomínio com portaria 24h, lazer completo e áreas comuns revitalizadas.</p>
         <p><strong>Mais informações pelo whatsapp.</strong></p>
     </div>
-    
+   
     <div id="imovel23" class="property">
          <button class="botao-compartilhar" title="Compartilhar este imóvel">
          <i class="fas fa-share-alt"></i>
@@ -1075,9 +1074,9 @@
         <p>Dois quartos (1 suíte), sala, cozinha ampla e ventilada, varandão e 1 vaga de garagem.</p>
         <p>Conforto, localização e paisagens únicas!</p>
         <p><strong>Mais informações pelo whatsapp.</strong></p>
-</div>
+    </div>
 
-<div id="imovel33" class="property">
+    <div id="imovel33" class="property">
      <button class="botao-compartilhar" title="Compartilhar este imóvel">
      <i class="fas fa-share-alt"></i>
      </button>
@@ -1101,33 +1100,9 @@
         <p>Potencial e oportunidade no mesmo endereço!</p>
         <p><strong>Documentação: aguardando usucapião.</strong></p>
         <p><strong>Mais informações pelo whatsapp.</strong></p>
-</div>
-
-<div id="imovel34" class="property">
-     <button class="botao-compartilhar" title="Compartilhar este imóvel">
-     <i class="fas fa-share-alt"></i>
-     </button>
-     <h2>Imóvel 34</h2>
-     <div class="carousel-container">
-         <div class="carousel-track" data-imovel="34">
-            <div class="carousel-slide"><img src="imagens/imagens/imovel34/foto1.jpg" alt="Imóvel 34 - Foto 1" onclick="abrirZoom(this)"></div>
-            <div class="carousel-slide"><img src="imagens/imagens/imovel34/foto2.jpg" alt="Imóvel 34 - Foto 2" onclick="abrirZoom(this)"></div>
-            <div class="carousel-slide"><img src="imagens/imagens/imovel34/foto3.jpg" alt="Imóvel 34 - Foto 3" onclick="abrirZoom(this)"></div>
-            <div class="carousel-slide"><img src="imagens/imagens/imovel34/foto4.jpg" alt="Imóvel 34 - Foto 4" onclick="abrirZoom(this)"></div>
-        </div>
-        <button class="carousel-btn carousel-prev" onclick="moveCarousel(-1, 34)">&#10094;</button>
-        <button class="carousel-btn carousel-next" onclick="moveCarousel(1, 34)">&#10095;</button>
     </div>
-    <p><strong>Valor:</strong>R$ 480.000,00</p>
-    <p>Rua Pardal Malet - Duque de Caxias.</p>
-    <p>Amplo imóvel no Parque Lafayette, com casa principal de 2 quartos, varandões, garagem e cômodos arejados.</p>
-    <p>Conta com uma casa no segundo pavimento e três no subsolo (duas inacabadas).</p>
-    <p>Terreno de 400 m² com quintal. Ideal para morar e investir. </p>
-    <p>Escritura de compra e venda e IPTU no nome.</p>
-    <p><strong>Mais informações pelo whatsapp.</strong></p>
- </div>
 
- <div id="imovel35" class="property">
+    <div id="imovel35" class="property">
       <button class="botao-compartilhar" title="Compartilhar este imóvel">
       <i class="fas fa-share-alt"></i>
       </button>
@@ -1206,7 +1181,7 @@
     <a class="button" href="contato.html">Avançar</a>
 </div>
 
-<a class="whatsapp-button" href="https://wa.me/5521965202500?text=Ol%C3%A1%20%E2%98%BA%2C%20vim%20atrav%C3%A9s%20do%20site%20imobili%C3%A1rio." target="_blank" title="Fale conosco no WhatsApp">
+<a class="whatsapp-button" href="https://wa.me/5521971406156?text=Ol%C3%A1%20%E2%98%BA%2C%20vim%20atrav%C3%A9s%20do%20site%20imobili%C3%A1rio." target="_blank" title="Fale conosco no WhatsApp">
     💬
 </a>
 
@@ -1313,15 +1288,15 @@
 
         botoesCompartilhar.forEach(botao => {
             botao.addEventListener('click', () => {
-                
+               
                 // Encontra o título do imóvel para o compartilhamento
                 const propertyContainer = botao.closest('.property');
                 const titleElement = propertyContainer ? propertyContainer.querySelector('h2') : null;
                 const title = titleElement ? titleElement.textContent : 'Confira este Imóvel!';
-                
+               
                 // Pega a URL da página atual
-                const url = window.location.href; 
-                
+                const url = window.location.href;
+               
                 const dadosCompartilhar = {
                     title: title,
                     text: `${title} - Veja mais detalhes agora!`,
@@ -1366,10 +1341,9 @@
         }
     });
 </script>
-    
+   
 </body>
-</html>
-
-
-
-  
+    </html>
+    
+ 
+         
