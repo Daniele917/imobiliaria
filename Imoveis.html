@@ -322,95 +322,98 @@
 </div>
 
 <div class="galeria">
-
-  <div id="imovel1" class="property">
-        <button class="botao-compartilhar" title="Compartilhar este imóvel">
+    
+    <div id="imovel1" class="property">
+    <button class="botao-compartilhar" title="Compartilhar este imóvel" onclick="compartilharImovel(this)">
         <i class="fas fa-share-alt"></i>
-        </button>
-        <h2>Imóvel 1</h2>
-        <div class="carousel-container">
-            <div class="carousel-track" data-imovel="1">
-                <div class="carousel-slide"><img src="imagens/imagens/imovel1/foto1.png" alt="Imóvel 1 - Foto 1" onclick="abrirZoom(this)"></div>
-                <div class="carousel-slide"><img src="imagens/imagens/imovel1/foto2.png" alt="Imóvel 1 - Foto 2" onclick="abrirZoom(this)"></div>
-                <div class="carousel-slide"><img src="imagens/imagens/imovel1/foto3.png" alt="Imóvel 1 - Foto 3" onclick="abrirZoom(this)"></div>
-                <div class="carousel-slide"><img src="imagens/imagens/imovel1/foto4.png" alt="Imóvel 1 - Foto 4" onclick="abrirZoom(this)"></div>
-            </div>
-            <button class="carousel-btn carousel-prev" onclick="moveCarousel(-1, 1)">&#10094;</button>
-            <button class="carousel-btn carousel-next" onclick="moveCarousel(1, 1)">&#10095;</button>
+    </button>
+    <h2>Imóvel 1</h2>
+    <div class="carousel-container">
+        <div class="carousel-track" data-imovel="1">
+            <div class="carousel-slide"><img src="imagens/imagens/imovel1/foto1.png" alt="Imóvel 1 - Foto 1" onclick="abrirZoom(this)"></div>
+            <div class="carousel-slide"><img src="imagens/imagens/imovel1/foto2.png" alt="Imóvel 1 - Foto 2" onclick="abrirZoom(this)"></div>
+            <div class="carousel-slide"><img src="imagens/imagens/imovel1/foto3.png" alt="Imóvel 1 - Foto 3" onclick="abrirZoom(this)"></div>
+            <div class="carousel-slide"><img src="imagens/imagens/imovel1/foto4.png" alt="Imóvel 1 - Foto 4" onclick="abrirZoom(this)"></div>
         </div>
-        <p><strong>Valor:</strong> R$ 300.000,00</p>
-        <p>Terreno com 360m² (12x30), próximo à estação Jardim Primavera.</p>
-        <p><strong>Com duas casas independentes:</strong></p>
-        <ul>
-            <li><strong>Casa 1:</strong> 3 quartos, sala ampla, cozinha, banheiro e varanda.</li>
-            <li><strong>Casa 2:</strong> 2 quartos, sala, cozinha, banheiro e varanda.</li>
-        </ul>
-        <p>Quintal amplo nos fundos, com poço artesiano. Ideal para lazer, horta ou novas construções.</p>
-        <p>Ótima opção para morar, investir ou gerar renda com aluguel.</p>
+        <button class="carousel-btn carousel-prev" onclick="moveCarousel(-1, 1)">&#10094;</button>
+        <button class="carousel-btn carousel-next" onclick="moveCarousel(1, 1)">&#10095;</button>
     </div>
+    <p><strong>Valor:</strong> R$ 300.000,00</p>
+    <p>Terreno com 360m² (12x30), próximo à estação Jardim Primavera.</p>
+    <p><strong>Com duas casas independentes:</strong></p>
+    <ul>
+        <li><strong>Casa 1:</strong> 3 quartos, sala ampla, cozinha, banheiro e varanda.</li>
+        <li><strong>Casa 2:</strong> 2 quartos, sala, cozinha, banheiro e varanda.</li>
+    </ul>
+    <p>Quintal amplo nos fundos, com poço artesiano. Ideal para lazer, horta ou novas construções.</p>
+    <p>Ótima opção para morar, investir ou gerar renda com aluguel.</p>
+    </div>
+  
 
     <div id="imovel2" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
-         <i class="fas fa-share-alt"></i>
-         </button>
-         <h2>Imóvel 2</h2>
-         <div class="carousel-container">
-            <div class="carousel-track" data-imovel="2">
-                <div class="carousel-slide"><img src="imagens/imagens/imovel2/foto1.png" alt="Imóvel 2 - Foto 1" onclick="abrirZoom(this)"></div>
-                <div class="carousel-slide"><img src="imagens/imagens/imovel2/foto4.png" alt="Imóvel 2 - Foto 4" onclick="abrirZoom(this)"></div>
-                <div class="carousel-slide"><img src="imagens/imagens/imovel2/foto3.png" alt="Imóvel 2 - Foto 3" onclick="abrirZoom(this)"></div>
-                <div class="carousel-slide"><img src="imagens/imagens/imovel2/foto2.png" alt="Imóvel 2 - Foto 2" onclick="abrirZoom(this)"></div>
-            </div>
-            <button class="carousel-btn carousel-prev" onclick="moveCarousel(-1, 2)">&#10094;</button>
-            <button class="carousel-btn carousel-next" onclick="moveCarousel(1, 2)">&#10095;</button>
+    <button class="botao-compartilhar" title="Compartilhar este imóvel" onclick="compartilharImovel(this)">
+        <i class="fas fa-share-alt"></i>
+    </button>
+    <h2>Imóvel 2</h2>
+    <div class="carousel-container">
+        <div class="carousel-track" data-imovel="2">
+            <div class="carousel-slide"><img src="imagens/imagens/imovel2/foto1.png" alt="Imóvel 2 - Foto 1" onclick="abrirZoom(this)"></div>
+            <div class="carousel-slide"><img src="imagens/imagens/imovel2/foto4.png" alt="Imóvel 2 - Foto 4" onclick="abrirZoom(this)"></div>
+            <div class="carousel-slide"><img src="imagens/imagens/imovel2/foto3.png" alt="Imóvel 2 - Foto 3" onclick="abrirZoom(this)"></div>
+            <div class="carousel-slide"><img src="imagens/imagens/imovel2/foto2.png" alt="Imóvel 2 - Foto 2" onclick="abrirZoom(this)"></div>
         </div>
-        <p><strong>Valor:</strong> R$ 370.000,00</p>
-        <p>Localização privilegiada, em frente à Unigranrio.Imóvel composto por 2 kitnets e 1 casa com suíte.</p>
-        <p>Ideal para estudantes ou investidores.</p>
+        <button class="carousel-btn carousel-prev" onclick="moveCarousel(-1, 2)">&#10094;</button>
+        <button class="carousel-btn carousel-next" onclick="moveCarousel(1, 2)">&#10095;</button>
+    </div>
+    <p><strong>Valor:</strong> R$ 370.000,00</p>
+    <p>Localização privilegiada, em frente à Unigranrio.Imóvel composto por 2 kitnets e 1 casa com suíte.</p>
+    <p>Ideal para estudantes ou investidores.</p>
     </div>
 
     <div id="imovel3" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
-         <i class="fas fa-share-alt"></i>
-         </button>
-         <h2>Imóvel 3</h2>
-         <div class="carousel-container">
-            <div class="carousel-track" data-imovel="3">
-                <div class="carousel-slide"><img src="imagens/imagens/imovel3/foto1.png" alt="Imóvel 3 - Foto 1" onclick="abrirZoom(this)"></div>
-                <div class="carousel-slide"><img src="imagens/imagens/imovel3/foto2.png" alt="Imóvel 3 - Foto 2" onclick="abrirZoom(this)"></div>
-                <div class="carousel-slide"><img src="imagens/imagens/imovel3/foto3.png" alt="Imóvel 3 - Foto 3" onclick="abrirZoom(this)"></div>
-                <div class="carousel-slide"><img src="imagens/imagens/imovel3/foto4.png" alt="Imóvel 3 - Foto 4" onclick="abrirZoom(this)"></div>
-            </div>
-            <button class="carousel-btn carousel-prev" onclick="moveCarousel(-1, 3)">&#10094;</button>
-            <button class="carousel-btn carousel-next" onclick="moveCarousel(1, 3)">&#10095;</button>
+    <button class="botao-compartilhar" title="Compartilhar este imóvel" onclick="compartilharImovel(this)">
+        <i class="fas fa-share-alt"></i>
+    </button>
+    <h2>Imóvel 3</h2>
+    <div class="carousel-container">
+        <div class="carousel-track" data-imovel="3">
+            <div class="carousel-slide"><img src="imagens/imagens/imovel3/foto1.png" alt="Imóvel 3 - Foto 1" onclick="abrirZoom(this)"></div>
+            <div class="carousel-slide"><img src="imagens/imagens/imovel3/foto2.png" alt="Imóvel 3 - Foto 2" onclick="abrirZoom(this)"></div>
+            <div class="carousel-slide"><img src="imagens/imagens/imovel3/foto3.png" alt="Imóvel 3 - Foto 3" onclick="abrirZoom(this)"></div>
+            <div class="carousel-slide"><img src="imagens/imagens/imovel3/foto4.png" alt="Imóvel 3 - Foto 4" onclick="abrirZoom(this)"></div>
         </div>
-        <p><strong>Valor:</strong> R$ 380.000,00</p>
-        <p>Casa com 2 quartos, quintal e garagem.</p>
-        <p>Localizada em bairro tranquilo e com infraestrutura completa.</p>
+        <button class="carousel-btn carousel-prev" onclick="moveCarousel(-1, 3)">&#10094;</button>
+        <button class="carousel-btn carousel-next" onclick="moveCarousel(1, 3)">&#10095;</button>
+    </div>
+    <p><strong>Valor:</strong> R$ 380.000,00</p>
+    <p>Casa com 2 quartos, quintal e garagem.</p>
+    <p>Localizada em bairro tranquilo e com infraestrutura completa.</p>
     </div>
 
     <div id="imovel4" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
-         <i class="fas fa-share-alt"></i>
-         </button>
-         <h2>Imóvel 4</h2>
-         <div class="carousel-container">
-            <div class="carousel-track" data-imovel="4">
-                <div class="carousel-slide"><img src="imagens/imagens/imovel4/foto1.png" alt="Imóvel 4 - Foto 1" onclick="abrirZoom(this)"></div>
-                <div class="carousel-slide"><img src="imagens/imagens/imovel4/foto2.png" alt="Imóvel 4 - Foto 2" onclick="abrirZoom(this)"></div>
-                <div class="carousel-slide"><img src="imagens/imagens/imovel4/foto3.png" alt="Imóvel 4 - Foto 3" onclick="abrirZoom(this)"></div>
-                <div class="carousel-slide"><img src="imagens/imagens/imovel4/foto4.png" alt="Imóvel 4 - Foto 4" onclick="abrirZoom(this)"></div>
-            </div>
-            <button class="carousel-btn carousel-prev" onclick="moveCarousel(-1, 4)">&#10094;</button>
-            <button class="carousel-btn carousel-next" onclick="moveCarousel(1, 4)">&#10095;</button>
+    <button class="botao-compartilhar" title="Compartilhar este imóvel" onclick="compartilharImovel(this)">
+        <i class="fas fa-share-alt"></i>
+    </button>
+    <h2>Imóvel 4</h2>
+    <div class="carousel-container">
+        <div class="carousel-track" data-imovel="4">
+            <div class="carousel-slide"><img src="imagens/imagens/imovel4/foto1.png" alt="Imóvel 4 - Foto 1" onclick="abrirZoom(this)"></div>
+            <div class="carousel-slide"><img src="imagens/imagens/imovel4/foto2.png" alt="Imóvel 4 - Foto 2" onclick="abrirZoom(this)"></div>
+            <div class="carousel-slide"><img src="imagens/imagens/imovel4/foto3.png" alt="Imóvel 4 - Foto 3" onclick="abrirZoom(this)"></div>
+            <div class="carousel-slide"><img src="imagens/imagens/imovel4/foto4.png" alt="Imóvel 4 - Foto 4" onclick="abrirZoom(this)"></div>
         </div>
-        <p><strong>Valor:</strong> R$ 650.000,00</p>
-        <p>Apartamento com 3 quartos, sendo  1 suíte, vaga de garagem e varanda gourmet.</p>
-        <p>Localizado próximo ao centro.</p>
+        <button class="carousel-btn carousel-prev" onclick="moveCarousel(-1, 4)">&#10094;</button>
+        <button class="carousel-btn carousel-next" onclick="moveCarousel(1, 4)">&#10095;</button>
+    </div>
+    <p><strong>Valor:</strong> R$ 650.000,00</p>
+    <p>Apartamento com 3 quartos, sendo  1 suíte, vaga de garagem e varanda gourmet.</p>
+    <p>Localizado próximo ao centro.</p>
     </div>
 
+    
+    
     <div id="imovel5" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
+         <button class="botao-compartilhar" title="Compartilhar este imóvel"onclick="compartilharImovel(this)">
          <i class="fas fa-share-alt"></i>
          </button>
          <h2>Imóvel 5</h2>
@@ -429,7 +432,7 @@
     </div>
 
     <div id="imovel6" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
+         <button class="botao-compartilhar" title="Compartilhar este imóvel"onclick="compartilharImovel(this)">
          <i class="fas fa-share-alt"></i>
          </button>
          <h2>Imóvel 6</h2>
@@ -449,7 +452,7 @@
     </div>
 
     <div id="imovel7" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
+         <button class="botao-compartilhar" title="Compartilhar este imóvel"onclick="compartilharImovel(this)">
          <i class="fas fa-share-alt"></i>
          </button>
          <h2>Imóvel 7</h2>
@@ -475,7 +478,7 @@
     </div>
 
     <div id="imovel8" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
+         <button class="botao-compartilhar" title="Compartilhar este imóvel"onclick="compartilharImovel(this)">
          <i class="fas fa-share-alt"></i>
          </button>
          <h2>Imóvel 8</h2>
@@ -500,7 +503,7 @@
     </div>
 
     <div id="imovel9" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
+         <button class="botao-compartilhar" title="Compartilhar este imóvel"onclick="compartilharImovel(this)">
          <i class="fas fa-share-alt"></i>
          </button>
          <h2>Imóvel 9</h2>
@@ -523,7 +526,7 @@
     </div>
 
     <div id="imovel10" class="property">
-        <button class="botao-compartilhar" title="Compartilhar este imóvel">
+        <button class="botao-compartilhar" title="Compartilhar este imóvel"onclick="compartilharImovel(this)">
         <i class="fas fa-share-alt"></i>
         </button>
         <h2>Imóvel 10</h2>
@@ -552,7 +555,7 @@
     </div>
 
     <div id="imovel11" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
+         <button class="botao-compartilhar" title="Compartilhar este imóvel"onclick="compartilharImovel(this)">
          <i class="fas fa-share-alt"></i>
          </button>
          <h2>Imóvel 11</h2>
@@ -577,7 +580,7 @@
     </div>
 
     <div id="imovel12" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
+         <button class="botao-compartilhar" title="Compartilhar este imóvel"onclick="compartilharImovel(this)">
          <i class="fas fa-share-alt"></i>
          </button>
          <h2>Imóvel 12</h2>
@@ -600,7 +603,7 @@
      </div>
 
     <div id="imovel13" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
+         <button class="botao-compartilhar" title="Compartilhar este imóvel"onclick="compartilharImovel(this)">
          <i class="fas fa-share-alt"></i>
          </button>
          <h2>Imóvel 13</h2>
@@ -630,7 +633,7 @@
     </div>
 
     <div id="imovel14" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
+         <button class="botao-compartilhar" title="Compartilhar este imóvel"onclick="compartilharImovel(this)">
          <i class="fas fa-share-alt"></i>
          </button>
          <h2>Imóvel 14</h2>
@@ -653,7 +656,7 @@
     </div>
 
     <div id="imovel15" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
+         <button class="botao-compartilhar" title="Compartilhar este imóvel"onclick="compartilharImovel(this)">
          <i class="fas fa-share-alt"></i>
          </button>
          <h2>Imóvel 15</h2>
@@ -676,7 +679,7 @@
     </div>
 
     <div id="imovel16" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
+         <button class="botao-compartilhar" title="Compartilhar este imóvel"onclick="compartilharImovel(this)">
          <i class="fas fa-share-alt"></i>
          </button>
          <h2>Imóvel 16</h2>
@@ -699,7 +702,7 @@
     </div>
 
     <div id="imovel17" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
+         <button class="botao-compartilhar" title="Compartilhar este imóvel"onclick="compartilharImovel(this)">
          <i class="fas fa-share-alt"></i>
          </button>
          <h2>Imóvel 17</h2>
@@ -721,7 +724,7 @@
     </div>
 
     <div id="imovel18" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
+         <button class="botao-compartilhar" title="Compartilhar este imóvel"onclick="compartilharImovel(this)">
          <i class="fas fa-share-alt"></i>
          </button>
          <h2>Imóvel 18</h2>
@@ -744,7 +747,7 @@
     </div>
 
     <div id="imovel19" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
+         <button class="botao-compartilhar" title="Compartilhar este imóvel"onclick="compartilharImovel(this)">
          <i class="fas fa-share-alt"></i>
          </button>
          <h2>Imóvel 19</h2>
@@ -773,7 +776,7 @@
     </div>
 
     <div id="imovel20" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
+         <button class="botao-compartilhar" title="Compartilhar este imóvel"onclick="compartilharImovel(this)">
          <i class="fas fa-share-alt"></i>
          </button>
          <h2>Imóvel 20</h2>
@@ -800,7 +803,7 @@
     </div>
 
     <div id="imovel21" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
+         <button class="botao-compartilhar" title="Compartilhar este imóvel"onclick="compartilharImovel(this)">
          <i class="fas fa-share-alt"></i>
          </button>
          <h2>Imóvel 21</h2>
@@ -828,7 +831,7 @@
     </div>
 
     <div id="imovel22" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
+         <button class="botao-compartilhar" title="Compartilhar este imóvel"onclick="compartilharImovel(this)">
          <i class="fas fa-share-alt"></i>
          </button>
          <h2>Imóvel 22</h2>
@@ -854,7 +857,7 @@
     </div>
    
     <div id="imovel23" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
+         <button class="botao-compartilhar" title="Compartilhar este imóvel" onclick="compartilharImovel(this)">
          <i class="fas fa-share-alt"></i>
          </button>
          <h2>Imóvel 23</h2>
@@ -876,7 +879,7 @@
     </div>
 
     <div id="imovel24" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
+         <button class="botao-compartilhar" title="Compartilhar este imóvel"onclick="compartilharImovel(this)">
          <i class="fas fa-share-alt"></i>
          </button>
          <h2>Imóvel 24</h2>
@@ -899,7 +902,7 @@
     </div>
 
     <div id="imovel25" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
+         <button class="botao-compartilhar" title="Compartilhar este imóvel" onclick="compartilharImovel(this)">
          <i class="fas fa-share-alt"></i>
          </button>
          <h2>Imóvel 25</h2>
@@ -921,7 +924,7 @@
     </div>
 
     <div id="imovel26" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
+         <button class="botao-compartilhar" title="Compartilhar este imóvel" onclick="compartilharImovel(this)">
          <i class="fas fa-share-alt"></i>
          </button>
          <h2>Imóvel 26</h2>
@@ -944,7 +947,7 @@
     </div>
 
     <div id="imovel27" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
+         <button class="botao-compartilhar" title="Compartilhar este imóvel" onclick="compartilharImovel(this)">
          <i class="fas fa-share-alt"></i>
          </button>
          <h2>Imóvel 27</h2>
@@ -965,7 +968,7 @@
     </div>
    
     <div id="imovel28" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
+         <button class="botao-compartilhar" title="Compartilhar este imóvel" onclick="compartilharImovel(this)">
          <i class="fas fa-share-alt"></i>
          </button>
          <h2>Imóvel 28</h2>
@@ -987,7 +990,7 @@
     </div>
 
     <div id="imovel29" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
+         <button class="botao-compartilhar" title="Compartilhar este imóvel" onclick="compartilharImovel(this)">
          <i class="fas fa-share-alt"></i>
          </button>
          <h2>Imóvel 29</h2>
@@ -1009,7 +1012,7 @@
     </div>
 
     <div id="imovel30" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
+         <button class="botao-compartilhar" title="Compartilhar este imóvel" onclick="compartilharImovel(this)">
          <i class="fas fa-share-alt"></i>
          </button>
          <h2>Imóvel 30</h2>
@@ -1032,7 +1035,7 @@
     </div>
 
     <div id="imovel31" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
+         <button class="botao-compartilhar" title="Compartilhar este imóvel" onclick="compartilharImovel(this)">
          <i class="fas fa-share-alt"></i>
          </button>
          <h2>Imóvel 31</h2>
@@ -1054,7 +1057,7 @@
     </div>
 
     <div id="imovel32" class="property">
-         <button class="botao-compartilhar" title="Compartilhar este imóvel">
+         <button class="botao-compartilhar" title="Compartilhar este imóvel" onclick="compartilharImovel(this)">
          <i class="fas fa-share-alt"></i>
          </button>
          <h2>Imóvel 32</h2>
@@ -1077,7 +1080,7 @@
     </div>
 
     <div id="imovel33" class="property">
-     <button class="botao-compartilhar" title="Compartilhar este imóvel">
+     <button class="botao-compartilhar" title="Compartilhar este imóvel" onclick="compartilharImovel(this)">
      <i class="fas fa-share-alt"></i>
      </button>
      <h2>Imóvel 33</h2>
@@ -1103,7 +1106,7 @@
     </div>
 
     <div id="imovel35" class="property">
-      <button class="botao-compartilhar" title="Compartilhar este imóvel">
+      <button class="botao-compartilhar" title="Compartilhar este imóvel" onclick="compartilharImovel(this)">
       <i class="fas fa-share-alt"></i>
       </button>
      <h2>Imóvel 35</h2>
@@ -1127,7 +1130,7 @@
 </div>
 
 <div id="imovel36" class="property">
-     <button class="botao-compartilhar" title="Compartilhar este imóvel">
+     <button class="botao-compartilhar" title="Compartilhar este imóvel" onclick="compartilharImovel(this)">
      <i class="fas fa-share-alt"></i>
      </button>
      <h2>Imóvel 36</h2>
@@ -1150,7 +1153,7 @@
 </div>
 
 <div id="imovel37" class="property">
-     <button class="botao-compartilhar" title="Compartilhar este imóvel">
+     <button class="botao-compartilhar" title="Compartilhar este imóvel" onclick="compartilharImovel(this)"
      <i class="fas fa-share-alt"></i>
      </button>
      <h2>Imóvel 37</h2>
