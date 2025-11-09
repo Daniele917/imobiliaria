@@ -1197,152 +1197,272 @@
 
 <script>
     // --- Lógica da Galeria Principal (Troca de Imóveis) ---
-    let slideIndex = 1; // Controla qual imóvel está ativo
-    const properties = document.getElementsByClassName("property");
+let slideIndex = 1; // Controla qual imóvel está ativo
+const properties = document.getElementsByClassName("property");
 
-    function plusSlides(n) {
-        showSlides(slideIndex += n);
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+function showSlides(n) {
+    if (n > properties.length) { slideIndex = 1 }
+    if (n < 1) { slideIndex = properties.length }
+    for (let i = 0; i < properties.length; i++) {
+        properties[i].classList.remove('active'); // Esconde todos
     }
+    properties[slideIndex - 1].classList.add('active'); // Mostra o atual
+    
+    // IMPORTANTE: Ao trocar o imóvel, reseta o carrossel interno para o primeiro slide
+    resetAllCarousels();
+    moveCarousel(0, slideIndex);
+}
 
-    function showSlides(n) {
-        if (n > properties.length) { slideIndex = 1 }
-        if (n < 1) { slideIndex = properties.length }
-        for (let i = 0; i < properties.length; i++) {
-            properties[i].classList.remove('active'); // Esconde todos
-        }
-        properties[slideIndex - 1].classList.add('active'); // Mostra o atual
-       
-        // IMPORTANTE: Ao trocar o imóvel, reseta o carrossel interno para o primeiro slide
-        resetAllCarousels();
-        moveCarousel(0, slideIndex);
-    }
+// --- Lógica dos Carrosseis Internos (Fotos do Imóvel) ---
+const carouselIndices = {};
 
-    // --- Lógica dos Carrosseis Internos (Fotos do Imóvel) ---
-    const carouselIndices = {};
-
-    function resetAllCarousels() {
-        for (let j = 1; j <= properties.length; j++) {
-            carouselIndices[j] = 0;
-            const track = document.querySelector(`.carousel-track[data-imovel="${j}"]`);
-            if(track) {
-                // Garante que o track está na posição inicial (slide 0)
-                track.style.transform = `translateX(0%)`;
-            }
-        }
-    }
-   
-    // Inicializa o estado e a exibição do primeiro imóvel
-    document.addEventListener('DOMContentLoaded', () => {
-        showSlides(slideIndex);
-        resetAllCarousels();
-    });
-
-
-    function moveCarousel(n, imovelID) {
-        const track = document.querySelector(`.carousel-track[data-imovel="${imovelID}"]`);
-        if (!track) return;
-       
-        const slides = track.querySelectorAll('.carousel-slide');
-       
-        // Atualiza o índice do carrossel específico
-        let newIndex = (carouselIndices[imovelID] || 0) + n;
-
-        // Lógica de loop (voltar ao início ou ir para o final)
-        if (newIndex >= slides.length) {
-            newIndex = 0;
-        }
-        if (newIndex < 0) {
-            newIndex = slides.length - 1;
-        }
-
-        carouselIndices[imovelID] = newIndex; // Salva o novo índice
-       
-        // Aplica a translação (o movimento do carrossel)
-        track.style.transform = `translateX(${-newIndex * 100}%)`;
-    }
-
-    // --- Lógica do Modal (Zoom da Imagem) ---
-    const modal = document.getElementById("zoom-modal");
-    const modalImg = document.getElementById("img-zoom");
-
-    function abrirZoom(imgElement) {
-        modal.style.display = "block";
-        modalImg.src = imgElement.src;
-    }
-
-    function fecharZoom(event) {
-        // Verifica se o clique foi no botão de fechar (X) ou no fundo (o modal div)
-        if (!event || event.target.id === 'zoom-modal' || event.target.classList.contains('close-button')) {
-            modal.style.display = "none";
+function resetAllCarousels() {
+    for (let j = 1; j <= properties.length; j++) {
+        carouselIndices[j] = 0;
+        const track = document.querySelector(`.carousel-track[data-imovel="${j}"]`);
+        if(track) {
+            // Garante que o track está na posição inicial (slide 0)
+            track.style.transform = `translateX(0%)`;
         }
     }
+}
 
-    // Adiciona o fechamento do modal ao pressionar ESC
-    document.addEventListener('keydown', function(e) {
-        if (e.key === "Escape" && modal.style.display === "block") {
-            fecharZoom();
-        }
-    });
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Seleciona TODOS os botões que têm a classe 'botao-compartilhar'
-        const botoesCompartilhar = document.querySelectorAll('.botao-compartilhar');
+function moveCarousel(n, imovelID) {
+    const track = document.querySelector(`.carousel-track[data-imovel="${imovelID}"]`);
+    if (!track) return;
+    
+    const slides = track.querySelectorAll('.carousel-slide');
+    
+    // Atualiza o índice do carrossel específico
+    let newIndex = (carouselIndices[imovelID] || 0) + n;
 
-        botoesCompartilhar.forEach(botao => {
-            botao.addEventListener('click', () => {
-               
-                // Encontra o título do imóvel para o compartilhamento
-                const propertyContainer = botao.closest('.property');
-                const titleElement = propertyContainer ? propertyContainer.querySelector('h2') : null;
-                const title = titleElement ? titleElement.textContent : 'Confira este Imóvel!';
-               
-                // Pega a URL da página atual
-                const url = window.location.href;
-               
-                const dadosCompartilhar = {
-                    title: title,
-                    text: `${title} - Veja mais detalhes agora!`,
-                    url: url
-                };
+    // Lógica de loop (voltar ao início ou ir para o final)
+    if (newIndex >= slides.length) {
+        newIndex = 0;
+    }
+    if (newIndex < 0) {
+        newIndex = slides.length - 1;
+    }
 
-                // Lógica de Compartilhamento Nativo (para Celulares)
-                if (navigator.share) {
-                    navigator.share(dadosCompartilhar).catch(error => console.log('Compartilhamento cancelado ou erro:', error));
-                } else {
-                    // Alternativa (para Desktops): Copiar o link
-                    navigator.clipboard.writeText(dadosCompartilhar.url).then(() => {
-                        alert('Link do imóvel copiado para a área de transferência!');
-                    }).catch(err => {
-                        console.error('Não foi possível copiar o link: ', err);
-                    });
-                }
-            });
+    carouselIndices[imovelID] = newIndex; // Salva o novo índice
+    
+    // Aplica a translação (o movimento do carrossel)
+    track.style.transform = `translateX(${-newIndex * 100}%)`;
+}
+
+// --- Lógica do Modal (Zoom da Imagem) ---
+const modal = document.getElementById("zoom-modal");
+const modalImg = document.getElementById("img-zoom");
+
+function abrirZoom(imgElement) {
+    modal.style.display = "block";
+    modalImg.src = imgElement.src;
+}
+
+function fecharZoom(event) {
+    // Verifica se o clique foi no botão de fechar (X) ou no fundo (o modal div)
+    if (!event || event.target.id === 'zoom-modal' || event.target.classList.contains('close-button')) {
+        modal.style.display = "none";
+    }
+}
+
+// Adiciona o fechamento do modal ao pressionar ESC
+document.addEventListener('keydown', function(e) {
+    if (e.key === "Escape" && modal.style.display === "block") {
+        fecharZoom();
+    }
+});
+
+// ==========================================
+// SISTEMA DE COMPARTILHAMENTO MELHORADO
+// ==========================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Inicializa o estado e a exibição
+    verificarEIrParaImovel();
+    resetAllCarousels();
+    
+    // Configura os botões de compartilhar
+    const botoesCompartilhar = document.querySelectorAll('.botao-compartilhar');
+    
+    botoesCompartilhar.forEach(botao => {
+        botao.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            compartilharImovel(this);
         });
     });
-</script>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Pega o hash da URL (ex: #imovel2)
-        const hash = window.location.hash;
+    
+    // Adiciona as animações CSS
+    adicionarEstilosAnimacao();
+});
 
-        if (hash) {
-            // Tenta encontrar o elemento com o ID correspondente
-            const element = document.querySelector(hash);
-            if (element) {
-                // Rola suavemente até o elemento
-                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+function compartilharImovel(botao) {
+    // Encontra o card do imóvel
+    const propertyContainer = botao.closest('.property');
+    
+    if (!propertyContainer) return;
+    
+    // Pega o ID do imóvel (ex: "imovel1", "imovel15", etc)
+    const imovelId = propertyContainer.id;
+    
+    // Pega o título do imóvel
+    const titleElement = propertyContainer.querySelector('h2');
+    const title = titleElement ? titleElement.textContent : 'Confira este Imóvel!';
+    
+    // Cria o link COMPLETO com a âncora do imóvel específico
+    const linkCompleto = window.location.origin + window.location.pathname + '#' + imovelId;
+    
+    const dadosCompartilhar = {
+        title: title,
+        text: `${title} - Veja mais detalhes agora!`,
+        url: linkCompleto
+    };
+    
+    // Tenta usar o compartilhamento nativo (mobile)
+    if (navigator.share) {
+        navigator.share(dadosCompartilhar)
+            .then(() => {
+                mostrarMensagem('✅ Compartilhado com sucesso!');
+            })
+            .catch(error => {
+                // Se cancelar ou der erro, copia o link
+                if (error.name !== 'AbortError') {
+                    copiarLink(linkCompleto);
+                }
+            });
+    } else {
+        // Desktop: copia o link direto
+        copiarLink(linkCompleto);
+    }
+}
 
-                // Opcional: destaque temporário
-                element.style.transition = "background-color 0.5s";
-                const originalBg = element.style.backgroundColor;
-                element.style.backgroundColor = "#ffff99"; // amarelo claro
+function copiarLink(link) {
+    navigator.clipboard.writeText(link)
+        .then(() => {
+            mostrarMensagem('✅ Link copiado! Compartilhe com seus clientes');
+        })
+        .catch(() => {
+            // Fallback se clipboard não funcionar
+            alert('Link do imóvel:\n' + link + '\n\nCopie este link para compartilhar!');
+        });
+}
+
+function mostrarMensagem(texto) {
+    const mensagem = document.createElement('div');
+    mensagem.textContent = texto;
+    mensagem.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #28a745, #20c997);
+        color: white;
+        padding: 18px 30px;
+        border-radius: 10px;
+        box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+        z-index: 10000;
+        font-weight: bold;
+        font-size: 16px;
+        animation: slideIn 0.4s ease;
+    `;
+    
+    document.body.appendChild(mensagem);
+    
+    setTimeout(() => {
+        mensagem.style.animation = 'slideOut 0.4s ease';
+        setTimeout(() => mensagem.remove(), 400);
+    }, 3000);
+}
+
+function verificarEIrParaImovel() {
+    const hash = window.location.hash;
+    
+    if (hash) {
+        const imovelId = hash.substring(1);
+        const imovelElement = document.getElementById(imovelId);
+        
+        if (imovelElement) {
+            // Extrai o número do imóvel (ex: "imovel15" -> 15)
+            const numeroImovel = parseInt(imovelId.replace('imovel', ''));
+            
+            if (!isNaN(numeroImovel)) {
+                // Navega até esse imóvel na galeria
+                slideIndex = numeroImovel;
+                showSlides(slideIndex);
+                
+                // Aguarda e rola até o imóvel
                 setTimeout(() => {
-                    element.style.backgroundColor = originalBg;
-                }, 1500);
+                    imovelElement.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center' 
+                    });
+                    
+                    // Destaca o imóvel
+                    destacarImovel(imovelElement);
+                }, 300);
             }
         }
-    });
+    } else {
+        // Se não tem hash, mostra o primeiro imóvel
+        showSlides(slideIndex);
+    }
+}
+
+function destacarImovel(elemento) {
+    const estiloOriginal = {
+        boxShadow: elemento.style.boxShadow,
+        transform: elemento.style.transform,
+        transition: elemento.style.transition,
+        backgroundColor: elemento.style.backgroundColor
+    };
+    
+    // Aplica o destaque dourado
+    elemento.style.transition = 'all 0.6s ease';
+    elemento.style.boxShadow = '0 0 40px rgba(255, 215, 0, 0.8), 0 0 80px rgba(255, 215, 0, 0.4)';
+    elemento.style.transform = 'scale(1.02)';
+    elemento.style.backgroundColor = '#fffbea';
+    
+    // Remove o destaque após 4 segundos
+    setTimeout(() => {
+        elemento.style.boxShadow = estiloOriginal.boxShadow;
+        elemento.style.transform = estiloOriginal.transform;
+        elemento.style.backgroundColor = estiloOriginal.backgroundColor;
+    }, 4000);
+}
+
+function adicionarEstilosAnimacao() {
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+}
+    
+    
 </script>
    
 </body>
